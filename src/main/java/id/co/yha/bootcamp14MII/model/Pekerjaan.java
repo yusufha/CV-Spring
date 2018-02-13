@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Pekerjaan.findAll", query = "SELECT p FROM Pekerjaan p")
     , @NamedQuery(name = "Pekerjaan.findByPekerjaanId", query = "SELECT p FROM Pekerjaan p WHERE p.pekerjaanId = :pekerjaanId")
+    , @NamedQuery(name = "Pekerjaan.findByNamaPerusahaan", query = "SELECT p FROM Pekerjaan p WHERE p.namaPerusahaan = :namaPerusahaan")
     , @NamedQuery(name = "Pekerjaan.findByJabatan", query = "SELECT p FROM Pekerjaan p WHERE p.jabatan = :jabatan")
     , @NamedQuery(name = "Pekerjaan.findByKota", query = "SELECT p FROM Pekerjaan p WHERE p.kota = :kota")
     , @NamedQuery(name = "Pekerjaan.findByTahunMulai", query = "SELECT p FROM Pekerjaan p WHERE p.tahunMulai = :tahunMulai")
@@ -44,6 +45,9 @@ public class Pekerjaan implements Serializable {
     @Basic(optional = false)
     @Column(name = "PEKERJAAN_ID")
     private Integer pekerjaanId;
+    @Size(max = 45)
+    @Column(name = "NAMA_PERUSAHAAN")
+    private String namaPerusahaan;
     @Size(max = 30)
     @Column(name = "JABATAN")
     private String jabatan;
@@ -76,6 +80,14 @@ public class Pekerjaan implements Serializable {
 
     public void setPekerjaanId(Integer pekerjaanId) {
         this.pekerjaanId = pekerjaanId;
+    }
+
+    public String getNamaPerusahaan() {
+        return namaPerusahaan;
+    }
+
+    public void setNamaPerusahaan(String namaPerusahaan) {
+        this.namaPerusahaan = namaPerusahaan;
     }
 
     public String getJabatan() {
@@ -148,7 +160,7 @@ public class Pekerjaan implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.Pekerjaan[ pekerjaanId=" + pekerjaanId + " ]";
+        return "id.co.yha.bootcamp14MII.model.Pekerjaan[ pekerjaanId=" + pekerjaanId + " ]";
     }
     
 }

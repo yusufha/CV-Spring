@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Organisasi.findAll", query = "SELECT o FROM Organisasi o")
     , @NamedQuery(name = "Organisasi.findByOrganisasiId", query = "SELECT o FROM Organisasi o WHERE o.organisasiId = :organisasiId")
+    , @NamedQuery(name = "Organisasi.findByNamaOrganisasi", query = "SELECT o FROM Organisasi o WHERE o.namaOrganisasi = :namaOrganisasi")
     , @NamedQuery(name = "Organisasi.findByJabatan", query = "SELECT o FROM Organisasi o WHERE o.jabatan = :jabatan")
     , @NamedQuery(name = "Organisasi.findByKota", query = "SELECT o FROM Organisasi o WHERE o.kota = :kota")
     , @NamedQuery(name = "Organisasi.findByTahunMulai", query = "SELECT o FROM Organisasi o WHERE o.tahunMulai = :tahunMulai")
@@ -44,6 +45,9 @@ public class Organisasi implements Serializable {
     @Basic(optional = false)
     @Column(name = "ORGANISASI_ID")
     private Integer organisasiId;
+    @Size(max = 45)
+    @Column(name = "NAMA_ORGANISASI")
+    private String namaOrganisasi;
     @Size(max = 30)
     @Column(name = "JABATAN")
     private String jabatan;
@@ -76,6 +80,14 @@ public class Organisasi implements Serializable {
 
     public void setOrganisasiId(Integer organisasiId) {
         this.organisasiId = organisasiId;
+    }
+
+    public String getNamaOrganisasi() {
+        return namaOrganisasi;
+    }
+
+    public void setNamaOrganisasi(String namaOrganisasi) {
+        this.namaOrganisasi = namaOrganisasi;
     }
 
     public String getJabatan() {
@@ -148,7 +160,7 @@ public class Organisasi implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.Organisasi[ organisasiId=" + organisasiId + " ]";
+        return "id.co.yha.bootcamp14MII.model.Organisasi[ organisasiId=" + organisasiId + " ]";
     }
     
 }

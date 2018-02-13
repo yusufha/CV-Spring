@@ -1,16 +1,10 @@
 package id.co.yha.bootcamp14MII.dao;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import java.util.Date;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +21,8 @@ public class AkunDAO {
 	@Autowired
 	private EntityManagerFactory factory;
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+//	@Autowired
+//	private SessionFactory sessionFactory;
 	
 	
 	public List<Akun> getAllAkun(){
@@ -81,14 +75,12 @@ public class AkunDAO {
 		return isSuccess;
 	}
 	
-	public void delete(int id)
-	{
-		Session session = sessionFactory.getCurrentSession();
-	    Akun akun = session.byId(Akun.class).load(id);
-	    session.delete(akun);
-	    //This makes the pending delete to be done
-	    session.flush();
+	public void delete(Akun akun){
+		EntityManager eManager = factory.createEntityManager();
 
+		eManager.getTransaction().begin();
+	    eManager.remove(akun);
+	    eManager.getTransaction().commit();
 	}
 
 }

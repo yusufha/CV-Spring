@@ -18,8 +18,8 @@ public class CvSpringApplication {
 		SpringApplication.run(CvSpringApplication.class, args);
 	}
 	
-	@Bean  
-	public SessionFactory sessionFactory(HibernateEntityManagerFactory hemf){  
-	    return hemf.getSessionFactory();  
-	}  
+//	@Bean  
+//	public SessionFactory sessionFactory(HibernateEntityManagerFactory hemf){  
+//	    return hemf.getSessionFactory();  
+//	}  
 }

@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Datadiri.findAll", query = "SELECT d FROM Datadiri d")
     , @NamedQuery(name = "Datadiri.findByDatadiriId", query = "SELECT d FROM Datadiri d WHERE d.datadiriId = :datadiriId")
     , @NamedQuery(name = "Datadiri.findByNama", query = "SELECT d FROM Datadiri d WHERE d.nama = :nama")
+    , @NamedQuery(name = "Datadiri.findByUmur", query = "SELECT d FROM Datadiri d WHERE d.umur = :umur")
     , @NamedQuery(name = "Datadiri.findByTempatLahir", query = "SELECT d FROM Datadiri d WHERE d.tempatLahir = :tempatLahir")
     , @NamedQuery(name = "Datadiri.findByTanggalLahir", query = "SELECT d FROM Datadiri d WHERE d.tanggalLahir = :tanggalLahir")
     , @NamedQuery(name = "Datadiri.findByGender", query = "SELECT d FROM Datadiri d WHERE d.gender = :gender")
@@ -58,6 +59,9 @@ public class Datadiri implements Serializable {
     @Size(max = 50)
     @Column(name = "NAMA")
     private String nama;
+    @Size(max = 45)
+    @Column(name = "UMUR")
+    private String umur;
     @Size(max = 25)
     @Column(name = "TEMPAT_LAHIR")
     private String tempatLahir;
@@ -93,11 +97,7 @@ public class Datadiri implements Serializable {
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Pekerjaan> pekerjaanList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
-    private List<Pendidikan> pendidikanList;
-    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Organisasi> organisasiList;
-    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
-    private List<Penghargaan> penghargaanList;
 
     public Datadiri() {
     }
@@ -120,6 +120,14 @@ public class Datadiri implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public String getUmur() {
+        return umur;
+    }
+
+    public void setUmur(String umur) {
+        this.umur = umur;
     }
 
     public String getTempatLahir() {
@@ -220,30 +228,12 @@ public class Datadiri implements Serializable {
     }
 
     @XmlTransient
-    public List<Pendidikan> getPendidikanList() {
-        return pendidikanList;
-    }
-
-    public void setPendidikanList(List<Pendidikan> pendidikanList) {
-        this.pendidikanList = pendidikanList;
-    }
-
-    @XmlTransient
     public List<Organisasi> getOrganisasiList() {
         return organisasiList;
     }
 
     public void setOrganisasiList(List<Organisasi> organisasiList) {
         this.organisasiList = organisasiList;
-    }
-
-    @XmlTransient
-    public List<Penghargaan> getPenghargaanList() {
-        return penghargaanList;
-    }
-
-    public void setPenghargaanList(List<Penghargaan> penghargaanList) {
-        this.penghargaanList = penghargaanList;
     }
 
     @Override
@@ -268,7 +258,7 @@ public class Datadiri implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.Datadiri[ datadiriId=" + datadiriId + " ]";
+        return "id.co.yha.bootcamp14MII.model.Datadiri[ datadiriId=" + datadiriId + " ]";
     }
     
 }

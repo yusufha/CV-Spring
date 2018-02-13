@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import id.co.yha.bootcamp14MII.dao.AkunDAO;
 import id.co.yha.bootcamp14MII.model.Akun;
 
@@ -69,15 +71,27 @@ public class AkunController {
 		}
 	}
 	
-	@DeleteMapping("/hapus/{id}")
-	public ResponseEntity<Akun> deleteAkun(@PathVariable("akunId") int id) {
-//	    Akun akun = akunDAO.getAkun(id);
+	@DeleteMapping("/akun/{id}")
+	   public ResponseEntity<?> delete(@PathVariable("akunId") int id) {
+	      akunDAO.delete(id);
+	      return ResponseEntity.ok().body("Akun has been deleted successfully.");
+	}
+	
+//	@RequestMapping(value = "items/{id}", method = RequestMethod.DELETE)
+//	public String delete(@PathVariable("akunId") int id) {
+////	    Akun akun = akunDAO.getAkun(id);
+//	    akunDAO.delete(id); 
+//
+//	    return "redirect:/akun/index";
+//	}
+	
+//	@DeleteMapping("/hapus/{id}")
+//	public ResponseEntity<Akun> deleteAkun(@PathVariable("akunId") int id) {
 //	    if(akun == null) {
 //	        return ResponseEntity.notFound().build();
 //	    }
-
-	    akunDAO.delete(id);
-	    return ResponseEntity.ok().build();
-	}
+//	    akunDAO.delete(id);
+//	    return ResponseEntity.ok().build();
+//	}
 
 }
