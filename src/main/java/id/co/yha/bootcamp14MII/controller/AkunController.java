@@ -51,7 +51,7 @@ public class AkunController {
 			return "redirect:/akun/index";
 		}
 		else {
-			return "actor/add";
+			return "akun/add";
 		}
 	}
 	

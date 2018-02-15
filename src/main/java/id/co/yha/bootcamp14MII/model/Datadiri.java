@@ -9,12 +9,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -47,8 +49,12 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Datadiri.findByBerat", query = "SELECT d FROM Datadiri d WHERE d.berat = :berat")
     , @NamedQuery(name = "Datadiri.findByAlamat", query = "SELECT d FROM Datadiri d WHERE d.alamat = :alamat")
     , @NamedQuery(name = "Datadiri.findByFoto", query = "SELECT d FROM Datadiri d WHERE d.foto = :foto")
-    , @NamedQuery(name = "Datadiri.findByProfilSingkat", query = "SELECT d FROM Datadiri d WHERE d.profilSingkat = :profilSingkat")})
+    , @NamedQuery(name = "Datadiri.findByProfilSingkat", query = "SELECT d FROM Datadiri d WHERE d.profilSingkat = :profilSingkat")
+    , @NamedQuery(name = "Datadiri.findByIsActive", query = "SELECT d FROM Datadiri d WHERE d.isActive = :isActive")})
 public class Datadiri implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "datadiri", fetch = FetchType.LAZY)
+    private List<Skilldiri> skilldiriList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -94,10 +100,18 @@ public class Datadiri implements Serializable {
     @Size(max = 150)
     @Column(name = "PROFIL_SINGKAT")
     private String profilSingkat;
+    @Column(name = "IS_ACTIVE")
+    private Short isActive;
+    //@ManyToMany(mappedBy = "datadiriList", fetch = FetchType.LAZY)
+    //private List<Skill> skillList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Pekerjaan> pekerjaanList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
+    private List<Pendidikan> pendidikanList;
+    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Organisasi> organisasiList;
+    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
+    private List<Penghargaan> penghargaanList;
 
     public Datadiri() {
     }
@@ -218,6 +232,23 @@ public class Datadiri implements Serializable {
         this.profilSingkat = profilSingkat;
     }
 
+    public Short getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Short isActive) {
+        this.isActive = isActive;
+    }
+
+//    @XmlTransient
+//    public List<Skill> getSkillList() {
+//        return skillList;
+//    }
+//
+//    public void setSkillList(List<Skill> skillList) {
+//        this.skillList = skillList;
+//    }
+
     @XmlTransient
     public List<Pekerjaan> getPekerjaanList() {
         return pekerjaanList;
@@ -228,12 +259,30 @@ public class Datadiri implements Serializable {
     }
 
     @XmlTransient
+    public List<Pendidikan> getPendidikanList() {
+        return pendidikanList;
+    }
+
+    public void setPendidikanList(List<Pendidikan> pendidikanList) {
+        this.pendidikanList = pendidikanList;
+    }
+
+    @XmlTransient
     public List<Organisasi> getOrganisasiList() {
         return organisasiList;
     }
 
     public void setOrganisasiList(List<Organisasi> organisasiList) {
         this.organisasiList = organisasiList;
+    }
+
+    @XmlTransient
+    public List<Penghargaan> getPenghargaanList() {
+        return penghargaanList;
+    }
+
+    public void setPenghargaanList(List<Penghargaan> penghargaanList) {
+        this.penghargaanList = penghargaanList;
     }
 
     @Override
@@ -259,6 +308,15 @@ public class Datadiri implements Serializable {
     @Override
     public String toString() {
         return "id.co.yha.bootcamp14MII.model.Datadiri[ datadiriId=" + datadiriId + " ]";
+    }
+
+    @XmlTransient
+    public List<Skilldiri> getSkilldiriList() {
+        return skilldiriList;
+    }
+
+    public void setSkilldiriList(List<Skilldiri> skilldiriList) {
+        this.skilldiriList = skilldiriList;
     }
     
 }

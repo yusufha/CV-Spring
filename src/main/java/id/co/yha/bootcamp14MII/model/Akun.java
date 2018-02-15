@@ -122,7 +122,7 @@ public class Akun implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.Akun[ akunId=" + akunId + " ]";
+        return "id.co.yha.bootcamp14MII.model.Akun[ akunId=" + akunId + " ]";
     }
     
 }

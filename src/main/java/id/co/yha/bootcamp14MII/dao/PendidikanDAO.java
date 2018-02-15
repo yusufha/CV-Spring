@@ -1,19 +1,19 @@
 package id.co.yha.bootcamp14MII.dao;
 
-
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import id.co.yha.bootcamp14MII.model.Akun;
-
+import id.co.yha.bootcamp14MII.model.Pendidikan;
 
 @Service
-public class AkunDAO {
+public class PendidikanDAO {
 	
 	private static final Logger log = 
 			LoggerFactory.getLogger(AkunDAO.class);
@@ -21,28 +21,26 @@ public class AkunDAO {
 	@Autowired
 	private EntityManagerFactory factory;
 	
-	
-	
-	public List<Akun> getAllAkun(){
+	public List<Pendidikan> getAllPendidikan(){
 		return factory.createEntityManager()
-				.createQuery("from Akun")
+				.createQuery("from Pendidikan")
 				.getResultList();
 	}
 
-	public Akun getAkun(int id) {
-		return (Akun) factory.createEntityManager()
-				.createQuery("from Akun where akunId =" +id )
+	public Pendidikan getPendidikan(int id) {
+		return (Pendidikan) factory.createEntityManager()
+				.createQuery("from Pendidikan where datadiriId =" +id )
 				.getSingleResult();
 	}
 	
-	public boolean addAkun(Akun akun) {
+	public boolean addPendidikan(Pendidikan pend) {
 		EntityManager eManager = factory.createEntityManager();
 		EntityTransaction transaksi = null;
 		boolean isSuccess = true;
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
-			eManager.persist(akun);
+			eManager.persist(pend);
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();
@@ -52,18 +50,22 @@ public class AkunDAO {
 		return isSuccess;
 	}
 	
-	public boolean editAkun(Akun updatedAkun) {
+	public boolean editPendidikan(Pendidikan updatedPend) {
 		EntityManager eManager = factory.createEntityManager();
 		EntityTransaction transaksi = null;
 		boolean isSuccess = true;
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
-			Akun excistingAkun = 
-					(Akun) eManager.find(Akun.class, 
-							updatedAkun.getAkunId());
-			excistingAkun.setUsername(updatedAkun.getUsername());
-			excistingAkun.setEmail(updatedAkun.getEmail());
+			Pendidikan excistingPend = 
+					(Pendidikan) eManager.find(Pendidikan.class, 
+							updatedPend.getPendidikanId());
+			excistingPend.setNamaSekolah(updatedPend.getNamaSekolah());
+			excistingPend.setJurusan(updatedPend.getJurusan());
+			excistingPend.setKota(updatedPend.getKota());
+			excistingPend.setTahunMulai(updatedPend.getTahunMulai());
+			excistingPend.setTahunSelesai(updatedPend.getTahunSelesai());
+			excistingPend.setIpk(updatedPend.getIpk());
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();
@@ -72,14 +74,4 @@ public class AkunDAO {
 		}
 		return isSuccess;
 	}
-	
-	public void delete(int id)
-	{
-		EntityManager eManager = factory.createEntityManager();
-		Akun akun = eManager.find(Akun.class, id);
-		eManager.getTransaction().begin();
-	    eManager.remove(akun);
-	    eManager.getTransaction().commit();
-	}
-
 }

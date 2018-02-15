@@ -124,7 +124,7 @@ public class Penghargaan implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.Penghargaan[ penghargaanId=" + penghargaanId + " ]";
+        return "id.co.yha.bootcamp14MII.model.Penghargaan[ penghargaanId=" + penghargaanId + " ]";
     }
     
 }

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="http://code.jquery.com/jquery-2.2.4.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#accordion").accordion();
+		var spinner1 = $("#spinner1").spinner();
+		var spinner2 = $("#spinner2").spinner();
+		var spinner3 = $("#spinner3").spinner();
+	});
+</script>
+</head>
+<body>
+	<div id="accordion">
+		<h3>Data Diri</h3>
+		<div>
+			<form action="#" th:action="@{/data/add}" th:object="${data}"
+				method="post">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="${data.nama}">Nama :</label> <input type="text"
+							th:field="*{nama}" th:errorclass="fieldError"
+							class="form-control" />
+					</div>
+					<div class="form-group col-md-6">
+						<p>
+							<label for="${data.umur}">Umur :</label> <input
+								th:field="*{umur}" th:errorclass="fieldError"
+								class="form-control" id="spinner3" name="value" />
+						</p>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${data.tempatLahir}">Tempat Lahir :</label> <input
+							type="text" th:field="*{tempatLahir}" th:errorclass="fieldError"
+							class="form-control" id="inputTempatLahir"
+							placeholder="Tempat Lahir" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${data.tanggalLahir}">Tanggal Lahir :</label> <input
+							type="date" th:field="*{tempatLahir}" th:errorclass="fieldError"
+							class="form-control" id="inputTanggalLahir"
+							placeholder="Tanggal Lahir" />
+					</div>
+					<div class="form-group col-md-4">
+						<label for="${data.gender}">Jenis Kelamin :</label> <select
+							id="inputGender" th:field="*{gender}" th:errorclass="fieldError"
+							class="form-control">
+							<option value="">Choose...</option>
+							<option value="Laki-laki">Laki-laki</option>
+							<option value="Perempuan">Perempuan</option>
+						</select>
+					</div>
+					<div class="form-group col-md-4">
+						<label for="${data.agama}">Agama :</label> <select id="inputAgama"
+							th:field="*{agama}" th:errorclass="fieldError"
+							class="form-control">
+							<option value="">Choose...</option>
+							<option value="Islam">Islam</option>
+							<option value="Kristen">Kristen</option>
+							<option value="Katolik">Katolik</option>
+							<option value="Hindu">Hindu</option>
+							<option value="Buddha">Buddha</option>
+							<option value="Konghuchu">Konghuchu</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${data.kewarganegaraan}">Kewarganegaraan :</label> <input
+							type="text" th:field="*{agama}" th:errorclass="fieldError"
+							class="form-control" id="inputKewarganegaraan"
+							placeholder="Kewarganegaraan" />
+					</div>
+					<div class="form-group col-md-4">
+						<label for="${data.statusPerkawinan}">Status :</label> <select
+							id="inputStatusPerkawinan" th:field="*{statusPerkawinan}"
+							th:errorclass="fieldError" class="form-control">
+							<option value="">Choose...</option>
+							<option value="Lajang">Lajang</option>
+							<option value="Menikah">Menikah</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<p>
+							<label for="${data.tinggi}">Tinggi Badan :</label> <input
+								id="spinner1" name="value" th:field="*{tinggi}"
+								th:errorclass="fieldError" />
+						</p>
+					</div>
+					<div class="form-group col-md-6">
+						<p>
+							<label for="${data.berat}">Berat Badan :</label> <input
+								id="spinner2" name="value" th:field="*{berat}"
+								th:errorclass="fieldError" />
+						</p>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${data.alamat}">Alamat :</label> <input type="text"
+							class="form-control" id="inputAddress" th:field="*{alamat}"
+							th:errorclass="fieldError"
+							placeholder="ex: Jalan S. Parman Kav.7-9 No.12B Jakarta Barat" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="${data.foto}">Upload Foto Terbaru :</label> <input
+						type="file" class="form-control-file" th:field="*{foto}"
+						th:errorclass="fieldError" id="exampleFormControlFile1" />
+				</div>
+				<div class="form-group">
+					<label for="${data.profilSingkat}">Profil Singkat :</label> <input
+						type="text" class="form-control" id="inputProfilSingkat"
+						th:field="*{profilSingkat}" th:errorclass="fieldError"
+						placeholder="ex: I love to work with HTML..." />
+				</div>
+				<button type="submit" class="btn btn-primary">Simpan</button>
+			</form>
+		</div>
+		<h3>Pendidikan</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="${pendidikan.namaSekolah}">Nama Institusi :</label> <input type="text"
+							th:field="*{namaSekolah}" th:errorclass="fieldError"
+							class="form-control" id="inputNama"
+							placeholder="Nama Sekolah/Universitas" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pendidikan.jurusan}">Jurusan :</label> <input type="text"
+							th:field="*{jurusan}" th:errorclass="fieldError" class="form-control" id="inputJurusan" placeholder="Jurusan" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pendidikan.kota}">Kota :</label> <input type="text"
+							th:field="*{kota}" th:errorclass="fieldError"
+							class="form-control" id="inputKota" placeholder="Kota" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pendidikan.tahunMulai}">Tahun Mulai :</label> <input type="date"
+							th:field="*{tahunMulai}" th:errorclass="fieldError"
+							class="form-control" id="inputTMulai" placeholder="Tahun Mulai" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pendidikan.tahunSelesai}">Tahun Selesai :</label> <input
+							type="date" th:field="*{tahunSelesai}" th:errorclass="fieldError"
+							class="form-control" id="inputTSelesai"
+							placeholder="Tahun Selesai" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pendidikan.ipk}">IPK :</label> <input type="text"
+						th:field="*{ipk}" th:errorclass="fieldError"
+							class="form-control" id="inputIPK" placeholder="ex: 3.51" />
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Tambah
+						Pendidikan</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+		<h3>Organisasi</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="${organisasi.namaOrganisasi}">Nama Organisasi :</label> <input
+							type="text" class="form-control" id="inputNama"
+							th:field="*{namaOrganisasi}" th:errorclass="fieldError"
+							placeholder="Nama Organisasi" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${organisasi.jabatan}">Jabatan :</label> <input type="text"
+						th:field="*{jabatan}" th:errorclass="fieldError"
+							class="form-control" id="inputJabatan" placeholder="Jabatan" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${organisasi.kota}">Kota :</label> <input type="text"
+						th:field="*{kota}" th:errorclass="fieldError"
+							class="form-control" id="inputKota" placeholder="Kota" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${organisasi.tahunMulai}">Tahun Mulai :</label> <input type="date"
+						th:field="*{tahunMulai}" th:errorclass="fieldError"
+							class="form-control" id="inputTMulai" placeholder="Tahun Mulai" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${organisasi.tahunSelesai}">Tahun Selesai :</label> <input
+							type="date" class="form-control" id="inputTSelesai"
+							th:field="*{tahunSelesai}" th:errorclass="fieldError"
+							placeholder="Tahun Selesai" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${organisasi.keterangan}">Keterangan :</label> <input type="text"
+						th:field="*{keterangan}" th:errorclass="fieldError"
+							class="form-control" id="inputKet" placeholder="Keterangan" />
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Tambah
+						Organisasi</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+		<h3>Pengalaman Kerja</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="${pekerjaan.namaPerusahaan}">Nama Perusahaan :</label> <input
+							type="text" class="form-control" id="inputNama"
+							th:field="*{namaPerusahaan}" th:errorclass="fieldError"
+							placeholder="Nama Perusahaan" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pekerjaan.jabatan}">Jabatan :</label> <input type="text"
+						th:field="*{jabatan}" th:errorclass="fieldError"
+							class="form-control" id="inputJabatan" placeholder="Jabatan" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pekerjaan.kota}">Kota:</label> <input type="text"
+						th:field="*{kota}" th:errorclass="fieldError"
+							class="form-control" id="inputKota" placeholder="Kota" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pekerjaan.tahunMulai}">Tahun Mulai</label> <input type="date"
+						th:field="*{tahunMulai}" th:errorclass="fieldError"
+							class="form-control" id="inputTMulai" placeholder="Tahun Mulai" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pekerjaan.tahunSelesai}">Tahun Selesai</label> <input
+							type="date" class="form-control" id="inputTSelesai"
+							th:field="*{tahunSelesai}" th:errorclass="fieldError"
+							placeholder="Tahun Selesai" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pekerjaan.keterangan}">Keterangan :</label> <input type="text"
+						th:field="*{keterangan}" th:errorclass="fieldError"
+							class="form-control" id="inputKet" placeholder="Keterangan" />
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Tambah
+						Pekerjaan</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+		<h3>Skill</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<label for="${skill.skill}">Skill :</label> <select id="inputSkill"
+							th:field="*{skill}" th:errorclass="fieldError" class="form-control"> 
+							<option>Choose...</option>
+							<option>Java Programming</option>
+							<option>C++ Programming</option>
+							<option>...</option>
+							<option>...</option>
+						</select>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${pekerjaan.keterangan}">Keterangan :</label> <input type="text"
+						th:field="*{keterangan}" th:errorclass="fieldError"
+							class="form-control" id="inputKet" placeholder="Keterangan" />
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Tambah Skill</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+		<h3>Prestasi</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="${prestasi.penghargaan}">Nama Prestasi :</label> <input type="text"
+							class="form-control" id="inputNama" th:field="*{penghargaan}" th:errorclass="fieldError"
+							placeholder="Nama Prestasi/Penghargaan/Sertifikat" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${prestasi.keterangan}">Keterangan :</label> <input type="text"
+						th:field="*{keterangan}" th:errorclass="fieldError"
+							class="form-control" id="inputKet" placeholder="Keterangan" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="${prestasi.gambar}">Upload
+							Sertifikat/Penghargaan :</label> <input type="file"
+							th:field="*{gambar}" th:errorclass="fieldError"
+							class="form-control-file" id="exampleFormControlFile1" />
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Tambah Skill</button>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

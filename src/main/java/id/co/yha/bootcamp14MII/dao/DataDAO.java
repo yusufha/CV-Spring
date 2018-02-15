@@ -26,26 +26,34 @@ public class DataDAO {
 	
 	@Autowired
 	private EntityManagerFactory factory;
+	
+	public List<Datadiri> getAllDatadiri(){
+		return factory.createEntityManager()
+				.createQuery("from Datadiri")
+				.getResultList();
+	}
 
 	public Datadiri getDatadiri (int id) {
 		return (Datadiri) factory.createEntityManager()
-				.createQuery("from Akun where datadiriId =" +id )
+				.createQuery("from Datadiri where datadiriId =" +id )
 				.getSingleResult();
 	}
 	
-//	public Organisasi getOrganisasi (int id) {
-//		return (Organisasi) factory.createEntityManager()
-//				.createQuery("from Akun where organisasiId =" +id )
-//				.getSingleResult();
-//	}
-//	
-//	
-//	public boolean addData(Data data) {
-//		EntityManager eManager = factory.createEntityManager();
-//		EntityTransaction transaksi = null;
-//		boolean isSuccess = true;
-//		
-//		return isSuccess;
-//	}
+	public boolean addDatadiri(Datadiri data) {
+		EntityManager eManager = factory.createEntityManager();
+		EntityTransaction transaksi = null;
+		boolean isSuccess = true;
+		try {
+			transaksi = eManager.getTransaction();
+			transaksi.begin();
+			eManager.persist(data);
+			transaksi.commit();
+		} catch(Exception e) {
+			transaksi.rollback();
+			isSuccess = false;
+			log.error("DAO Error", e.getMessage());
+		}
+		return isSuccess;
+	}
 
 }

@@ -160,7 +160,7 @@ public class Pendidikan implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.Pendidikan[ pendidikanId=" + pendidikanId + " ]";
+        return "id.co.yha.bootcamp14MII.model.Pendidikan[ pendidikanId=" + pendidikanId + " ]";
     }
     
 }

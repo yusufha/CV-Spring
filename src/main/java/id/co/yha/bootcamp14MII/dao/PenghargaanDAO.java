@@ -1,6 +1,5 @@
 package id.co.yha.bootcamp14MII.dao;
 
-
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,40 +8,38 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import id.co.yha.bootcamp14MII.model.Akun;
-
+import id.co.yha.bootcamp14MII.model.Penghargaan;
 
 @Service
-public class AkunDAO {
+public class PenghargaanDAO {
 	
+
 	private static final Logger log = 
 			LoggerFactory.getLogger(AkunDAO.class);
 	
 	@Autowired
 	private EntityManagerFactory factory;
 	
-	
-	
-	public List<Akun> getAllAkun(){
+	public List<Penghargaan> getAllPenghargaan(){
 		return factory.createEntityManager()
-				.createQuery("from Akun")
+				.createQuery("from Penghargaan")
 				.getResultList();
 	}
 
-	public Akun getAkun(int id) {
-		return (Akun) factory.createEntityManager()
-				.createQuery("from Akun where akunId =" +id )
+	public Penghargaan getPenghargaan(int id) {
+		return (Penghargaan) factory.createEntityManager()
+				.createQuery("from Penghargaan where datadiriId =" +id )
 				.getSingleResult();
 	}
 	
-	public boolean addAkun(Akun akun) {
+	public boolean addPenghargaan(Penghargaan penghargaan) {
 		EntityManager eManager = factory.createEntityManager();
 		EntityTransaction transaksi = null;
 		boolean isSuccess = true;
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
-			eManager.persist(akun);
+			eManager.persist(penghargaan);
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();
@@ -52,18 +49,19 @@ public class AkunDAO {
 		return isSuccess;
 	}
 	
-	public boolean editAkun(Akun updatedAkun) {
+	public boolean editPenghargaan(Penghargaan updatedPenghargaan) {
 		EntityManager eManager = factory.createEntityManager();
 		EntityTransaction transaksi = null;
 		boolean isSuccess = true;
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
-			Akun excistingAkun = 
-					(Akun) eManager.find(Akun.class, 
-							updatedAkun.getAkunId());
-			excistingAkun.setUsername(updatedAkun.getUsername());
-			excistingAkun.setEmail(updatedAkun.getEmail());
+			Penghargaan excistingPenghargaan = 
+					(Penghargaan) eManager.find(Penghargaan.class, 
+							updatedPenghargaan.getPenghargaanId());
+			excistingPenghargaan.setPenghargaan(updatedPenghargaan.getPenghargaan());
+			excistingPenghargaan.setKeterangan(updatedPenghargaan.getKeterangan());
+			excistingPenghargaan.setGambar(updatedPenghargaan.getGambar());
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();
@@ -72,14 +70,6 @@ public class AkunDAO {
 		}
 		return isSuccess;
 	}
-	
-	public void delete(int id)
-	{
-		EntityManager eManager = factory.createEntityManager();
-		Akun akun = eManager.find(Akun.class, id);
-		eManager.getTransaction().begin();
-	    eManager.remove(akun);
-	    eManager.getTransaction().commit();
-	}
+
 
 }
