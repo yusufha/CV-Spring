@@ -13,14 +13,14 @@
 
 </head>
 <body>
-	<form action="#" th:action="@{/akun/add}" th:object="${akun}"
+	<form action="#" th:action="@{/akun/add}" th:object="${aku}"
 		method="post">
 		<div>
-			<label th:for="${akun.username}"> User Name </label> <input
+			<label th:for="${aku.username}"> User Name </label> <input
 				type="text" th:field="*{username}" th:errorclass="fieldError" />
 		</div>
 		<div>
-			<label th:for="${akun.email}"> Email</label> <input type="text"
+			<label th:for="${aku.email}"> Email</label> <input type="text"
 				th:field="*{email}" th:errorclass="fieldError" />
 		</div>
 		<div>

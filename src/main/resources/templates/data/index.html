@@ -24,7 +24,7 @@
 <body>
 	<div>
 		<div class="widget" th="data : ${semuaDatadiri}">
-			<a th:href="@{'/data/add/'}">Add</a>
+			<a th:href="@{'/data/add'}">Add</a>
 		</div>
 		<br />
 		<table>
@@ -40,9 +40,12 @@
 				<tr th:each="x : ${semuaDatadiri}">
 					<td th:text="${x.nama}" class="Name"></td>
 					<td th:text="${x.umur}" class="Umur"></td>
-					<!--<td th:text="${x.skilldiriList}" class="Skill"></td>-->
-				  	<td th:each = "y : ${x.skilldiriList}" th:text="${y.skill}" class="Skill"></td>
-					
+					<td><ul th:each="y : ${x.skilldiriList}">
+						<li th:text="${y.skill.namaSkill}"></li>
+					</ul></td>
+				<!--  	<td th:text="${x.skilldiriList}" class="Skill"></td>-->
+				<!--    	<td th:each = "y : ${x.skilldiriList}" th:text="${y.namaSkill}" class="Skill"></td>
+					-->
 					<td><a th:href="@{'/data/detail/' + ${x.datadiriId}}">Detail</a>
 						<a th:href="@{'/data/edit/' + ${x.datadiriId}}"> Edit</a> <a
 						th:href="@{'/data/' + ${x.datadiriId}}"> Hapus</a></td>

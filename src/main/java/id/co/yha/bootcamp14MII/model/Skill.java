@@ -15,9 +15,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,12 +33,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Skill.findAll", query = "SELECT s FROM Skill s")
     , @NamedQuery(name = "Skill.findBySkillId", query = "SELECT s FROM Skill s WHERE s.skillId = :skillId")
-    , @NamedQuery(name = "Skill.findBySkill", query = "SELECT s FROM Skill s WHERE s.skill = :skill")
+    , @NamedQuery(name = "Skill.findByNamaSkill", query = "SELECT s FROM Skill s WHERE s.namaSkill = :namaSkill")
     , @NamedQuery(name = "Skill.findByKeterangan", query = "SELECT s FROM Skill s WHERE s.keterangan = :keterangan")})
 public class Skill implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "skill", fetch = FetchType.LAZY)
-    private List<Skilldiri> skilldiriList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,16 +44,13 @@ public class Skill implements Serializable {
     @Column(name = "SKILL_ID")
     private Integer skillId;
     @Size(max = 50)
-    @Column(name = "SKILL")
-    private String skill;
+    @Column(name = "NAMA_SKILL")
+    private String namaSkill;
     @Size(max = 50)
     @Column(name = "KETERANGAN")
     private String keterangan;
-    @JoinTable(name = "skilldiri", joinColumns = {
-        @JoinColumn(name = "DATADIRI_ID", referencedColumnName = "SKILL_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "SKILL_ID", referencedColumnName = "DATADIRI_ID")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Datadiri> datadiriList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "skill", fetch = FetchType.LAZY)
+    private List<Skilldiri> skilldiriList;
 
     public Skill() {
     }
@@ -76,12 +67,12 @@ public class Skill implements Serializable {
         this.skillId = skillId;
     }
 
-    public String getSkill() {
-        return skill;
+    public String getNamaSkill() {
+        return namaSkill;
     }
 
-    public void setSkill(String skill) {
-        this.skill = skill;
+    public void setNamaSkill(String namaSkill) {
+        this.namaSkill = namaSkill;
     }
 
     public String getKeterangan() {
@@ -93,12 +84,12 @@ public class Skill implements Serializable {
     }
 
     @XmlTransient
-    public List<Datadiri> getDatadiriList() {
-        return datadiriList;
+    public List<Skilldiri> getSkilldiriList() {
+        return skilldiriList;
     }
 
-    public void setDatadiriList(List<Datadiri> datadiriList) {
-        this.datadiriList = datadiriList;
+    public void setSkilldiriList(List<Skilldiri> skilldiriList) {
+        this.skilldiriList = skilldiriList;
     }
 
     @Override
@@ -124,15 +115,6 @@ public class Skill implements Serializable {
     @Override
     public String toString() {
         return "id.co.yha.bootcamp14MII.model.Skill[ skillId=" + skillId + " ]";
-    }
-
-    @XmlTransient
-    public List<Skilldiri> getSkilldiriList() {
-        return skilldiriList;
-    }
-
-    public void setSkilldiriList(List<Skilldiri> skilldiriList) {
-        this.skilldiriList = skilldiriList;
     }
     
 }

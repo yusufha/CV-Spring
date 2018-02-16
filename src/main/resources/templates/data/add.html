@@ -28,31 +28,32 @@
 
 </head>
 <body>
-	<form action="#" th:action="@{/data/add}" th:object="${data}" method="post">
+	<form action="#" th:action="@{/data/add}" th:object="${data}"
+		method="post">
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="${data.nama}">Nama :</label> <input type="text"
+				<label th:for="${data.nama}"> Nama :</label> <input type="text"
 					th:field="*{nama}" th:errorclass="fieldError" class="form-control" />
 			</div>
 			<div class="form-group col-md-6">
-					<label for="${data.umur}">Umur :</label> <input
-						th:field="*{umur}" th:errorclass="fieldError" class="form-control"
-						id="spinner3" name="value" />
+				<label th:for="${data.umur}">Umur :</label> <input
+					th:field="*{umur}" th:errorclass="fieldError" class="form-control"
+					id="spinner3" name="value" />
 			</div>
 			<div class="form-group col-md-6">
-				<label for="${data.tempatLahir}">Tempat Lahir :</label> <input
+				<label th:for="${data.tempatLahir}">Tempat Lahir :</label> <input
 					type="text" th:field="*{tempatLahir}" th:errorclass="fieldError"
 					class="form-control" id="inputTempatLahir"
 					placeholder="Tempat Lahir" />
 			</div>
 			<div class="form-group col-md-6">
-				<label for="${data.tanggalLahir}">Tanggal Lahir :</label> <input
+				<label th:for="${data.tanggalLahir}">Tanggal Lahir :</label> <input
 					type="date" th:field="*{tanggalLahir}" th:errorclass="fieldError"
 					class="form-control" id="inputTanggalLahir"
 					placeholder="Tanggal Lahir" />
 			</div>
 			<div class="form-group col-md-4">
-				<label for="${data.gender}">Jenis Kelamin :</label> <select
+				<label th:for="${data.gender}">Jenis Kelamin :</label> <select
 					id="inputGender" th:field="*{gender}" th:errorclass="fieldError"
 					class="form-control">
 					<option value="">Choose...</option>
@@ -61,7 +62,7 @@
 				</select>
 			</div>
 			<div class="form-group col-md-4">
-				<label for="${data.agama}">Agama :</label> <select
+				<label th:for="${data.agama}">Agama :</label> <select
 					id="inputAgama" th:field="*{agama}" th:errorclass="fieldError"
 					class="form-control">
 					<option value="">Choose...</option>
@@ -74,13 +75,13 @@
 				</select>
 			</div>
 			<div class="form-group col-md-6">
-				<label for="${data.kewarganegaraan}">Kewarganegaraan :</label> <input
+				<label th:for="${data.kewarganegaraan}">Kewarganegaraan :</label> <input
 					type="text" th:field="*{kewarganegaraan}"
 					th:errorclass="fieldError" class="form-control"
 					id="inputKewarganegaraan" placeholder="Kewarganegaraan" />
 			</div>
 			<div class="form-group col-md-4">
-				<label for="${data.statusPerkawinan}">Status :</label> <select
+				<label th:for="${data.statusPerkawinan}">Status :</label> <select
 					id="inputStatusPerkawinan" th:field="*{statusPerkawinan}"
 					th:errorclass="fieldError" class="form-control">
 					<option value="">Choose...</option>
@@ -90,31 +91,31 @@
 			</div>
 			<div class="form-group col-md-6">
 				<p>
-					<label for="${data.tinggi}">Tinggi Badan :</label> <input
+					<label th:for="${data.tinggi}">Tinggi Badan :</label> <input
 						id="spinner1" name="value" th:field="*{tinggi}"
 						th:errorclass="fieldError" />
 				</p>
 			</div>
 			<div class="form-group col-md-6">
 				<p>
-					<label for="${data.berat}">Berat Badan :</label> <input
+					<label th:for="${data.berat}">Berat Badan :</label> <input
 						id="spinner2" name="value" th:field="*{berat}"
 						th:errorclass="fieldError" />
 				</p>
 			</div>
 			<div class="form-group col-md-6">
-				<label for="${data.alamat}">Alamat :</label> <input type="text"
+				<label th:for="${data.alamat}">Alamat :</label> <input type="text"
 					class="form-control" id="inputAddress" th:field="*{alamat}"
 					th:errorclass="fieldError"
 					placeholder="ex: Jalan S. Parman Kav.7-9 No.12B Jakarta Barat" />
 			</div>
 			<div class="form-group col-md-6">
-				<label for="${data.foto}">Upload Foto Terbaru :</label> <input
+				<label th:for="${data.foto}">Upload Foto Terbaru :</label> <input
 					type="file" class="form-control-file" th:field="*{foto}"
 					th:errorclass="fieldError" id="exampleFormControlFile1" />
 			</div>
 			<div class="form-group col-md-6">
-				<label for="${data.profilSingkat}">Profil Singkat :</label> <input
+				<label th:for="${data.profilSingkat}">Profil Singkat :</label> <input
 					type="text" class="form-control" id="inputProfilSingkat"
 					th:field="*{profilSingkat}" th:errorclass="fieldError"
 					placeholder="ex: I love to work with HTML..." />

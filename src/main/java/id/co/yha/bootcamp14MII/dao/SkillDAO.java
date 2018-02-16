@@ -68,7 +68,7 @@ public class SkillDAO {
 			Skill excistingSkill = 
 					(Skill) eManager.find(Skill.class, 
 							updatedSkill.getSkillId());
-			excistingSkill.setSkill(updatedSkill.getSkill());
+			excistingSkill.setNamaSkill(updatedSkill.getNamaSkill());
 			excistingSkill.setKeterangan(updatedSkill.getKeterangan());
 			transaksi.commit();
 		} catch(Exception e) {

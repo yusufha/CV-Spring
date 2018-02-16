@@ -39,14 +39,14 @@ public class DataDAO {
 				.getSingleResult();
 	}
 	
-	public boolean addDatadiri(Datadiri data) {
+	public boolean addDatadiri(Datadiri datadiri) {
 		EntityManager eManager = factory.createEntityManager();
 		EntityTransaction transaksi = null;
 		boolean isSuccess = true;
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
-			eManager.persist(data);
+			eManager.persist(datadiri);
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();

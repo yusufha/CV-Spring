@@ -16,7 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -52,9 +51,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Datadiri.findByProfilSingkat", query = "SELECT d FROM Datadiri d WHERE d.profilSingkat = :profilSingkat")
     , @NamedQuery(name = "Datadiri.findByIsActive", query = "SELECT d FROM Datadiri d WHERE d.isActive = :isActive")})
 public class Datadiri implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "datadiri", fetch = FetchType.LAZY)
-    private List<Skilldiri> skilldiriList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -102,14 +98,14 @@ public class Datadiri implements Serializable {
     private String profilSingkat;
     @Column(name = "IS_ACTIVE")
     private Short isActive;
-    //@ManyToMany(mappedBy = "datadiriList", fetch = FetchType.LAZY)
-    //private List<Skill> skillList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Pekerjaan> pekerjaanList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Pendidikan> pendidikanList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Organisasi> organisasiList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "datadiri", fetch = FetchType.LAZY)
+    private List<Skilldiri> skilldiriList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Penghargaan> penghargaanList;
 
@@ -240,15 +236,6 @@ public class Datadiri implements Serializable {
         this.isActive = isActive;
     }
 
-//    @XmlTransient
-//    public List<Skill> getSkillList() {
-//        return skillList;
-//    }
-//
-//    public void setSkillList(List<Skill> skillList) {
-//        this.skillList = skillList;
-//    }
-
     @XmlTransient
     public List<Pekerjaan> getPekerjaanList() {
         return pekerjaanList;
@@ -274,6 +261,15 @@ public class Datadiri implements Serializable {
 
     public void setOrganisasiList(List<Organisasi> organisasiList) {
         this.organisasiList = organisasiList;
+    }
+
+    @XmlTransient
+    public List<Skilldiri> getSkilldiriList() {
+        return skilldiriList;
+    }
+
+    public void setSkilldiriList(List<Skilldiri> skilldiriList) {
+        this.skilldiriList = skilldiriList;
     }
 
     @XmlTransient
@@ -308,15 +304,6 @@ public class Datadiri implements Serializable {
     @Override
     public String toString() {
         return "id.co.yha.bootcamp14MII.model.Datadiri[ datadiriId=" + datadiriId + " ]";
-    }
-
-    @XmlTransient
-    public List<Skilldiri> getSkilldiriList() {
-        return skilldiriList;
-    }
-
-    public void setSkilldiriList(List<Skilldiri> skilldiriList) {
-        this.skilldiriList = skilldiriList;
     }
     
 }

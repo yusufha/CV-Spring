@@ -41,7 +41,7 @@ public class AkunController {
 	
 	@GetMapping("/add")
 	public String add(Model model) {
-		model.addAttribute("akun", new Akun());
+		model.addAttribute("aku", new Akun());
 		return "akun/add";
 	}
 	
