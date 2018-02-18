@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous" />
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="http://code.jquery.com/jquery-2.2.4.js"
+	integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+</head>
+<body>
+	<form action="#" th:action="@{/pendidikan/edit}"
+		th:object="${pendidikan}" method="post">
+		<div>
+			<label th:for="${pendidikan.namaSekolah}"> Nama Sekolah </label> <input
+				type="text" th:field="*{namaSekolah}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('namaSekolah')}"
+				th:errors="*{namaSekolah}">Nama Sekolah</p>
+		</div>
+		<div>
+			<label th:for="${pendidikan.jurusan}"> Jurusan</label> <input
+				type="text" th:field="*{jurusan}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('jurusan')}" th:errors="*{jurusan}">
+				Jurusan</p>
+		</div>
+		<div>
+			<label th:for="${pendidikan.kota}"> Kota </label> <input type="text"
+				th:field="*{kota}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('kota')}" th:errors="*{kota}">Kota
+			</p>
+		</div>
+		<div>
+			<label th:for="${pendidikan.tahunMulai}"> Tahun Mulai </label> <input
+				type="text" th:field="*{tahunMulai}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('tahunMulai')}"
+				th:errors="*{tahunMulai}">Tahun mulai</p>
+		</div>
+		<div>
+			<label th:for="${pendidikan.tahunSelesai}"> Tahun Selesai </label> <input
+				type="text" th:field="*{tahunSelesai}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('tahunSelesai')}"
+				th:errors="*{tahunSelesai}">Tahun Selesai</p>
+		</div>
+		<div>
+			<label th:for="${pendidikan.ipk}"> IPK </label> <input type="text"
+				th:field="*{ipk}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('ipk')}" th:errors="*{ipk}">IPK</p>
+		</div>
+		<div>
+			<input type="submit" value="SIMPAN" /> <input type="hidden"
+				th:field="*{pendidikanId}" th:value="*{pendidikanId}" />
+		</div>
+	</form>
+</body>
+</html>

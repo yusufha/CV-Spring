@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="http://code.jquery.com/jquery-2.2.4.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#accordion").accordion();
+		var spinner1 = $("#spinner1").spinner();
+		var spinner2 = $("#spinner2").spinner();
+		var spinner3 = $("#spinner3").spinner();
+	});
+</script>
+</head>
+<body>
+	<form action="#" th:action="@{/datadiri/add}" th:object="${datadiri}"
+		method="post">
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.namaLengkap}"> Nama Lengkap </label> <input
+				type="text" th:field="*{namaLengkap}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.umur}"> Umur </label> <input type="text"
+				th:field="*{umur}" th:errorclass="fieldError" />
+		</div>
+		
+		<!-- <div>
+			<label th:for="${datadiri.tempatLahir}"> Tempat Lahir </label> <input type="text"
+				th:field="*{tempatLahir}" th:errorclass="fieldError" />
+		</div>-->
+		<div>
+			<label th:for="${datadiri.gender}"> Jenis Kelamin </label> <input type="text"
+				th:field="*{gender}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.agama}"> Agama </label> <input type="text"
+				th:field="*{agama}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.kewarganegaraan}"> Kewarganegaraan </label> <input type="text"
+				th:field="*{kewarganegaraan}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.statusPerkawinan}"> Status Perkawinan </label> <input type="text"
+				th:field="*{statusPerkawinan}" th:errorclass="fieldError" />
+		</div>
+		<!--
+		<div>
+			<label th:for="${datadiri.tanggalLahir}"> Tanggal Lahir </label> <input type="text"
+				th:field="*{tanggalLahir}" th:errorclass="fieldError" />
+		</div>
+		
+		<div>
+			<label th:for="${datadiri.tinggi}"> Tinggi Badan </label> <input type="text"
+				th:field="*{tinggi}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.berat}"> Berat Badan </label> <input type="text"
+				th:field="*{berat}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.alamat}"> Alamat </label> <input type="text"
+				th:field="*{alamat}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.foto}"> Foto </label> <input type="text"
+				th:field="*{foto}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.profilSingkat}"> Profil Singkat </label> <input type="text"
+				th:field="*{profilSingkat}" th:errorclass="fieldError" />
+		</div>
+		-->
+		<div>
+			<input type="submit" value="SIMPAN" />
+		</div>
+	</form>
+</body>
+</html>

@@ -21,27 +21,27 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
 
 </head>
 <body>
-	<form action="#" th:action="@{/skill/edit}"
-	th:object="${skill}" method="post">
+	<form action="#" th:action="@{/akun/edit}"
+	th:object="${akun}" method="post">
 	<div>
-		<label th:for="${skill.namaSkill}"> Skill </label>
-		<input type="text" th:field="*{skill}"
+		<label th:for="${akun.username}"> User Name </label>
+		<input type="text" th:field="*{username}"
 		th:errorclass="fieldError"/>
-		<p th:if="${#fields.hasErrors('skill')}"
-		th:errors="*{namaSkill}"> Skill </p>
+		<p th:if="${#fields.hasErrors('username')}"
+		th:errors="*{username}"> User Name </p>
 	</div>
 	<div>
-		<label th:for="${skill.keterangan}">
-		Keterangan</label>
-		<input type="text" th:field= "*{keterangan}"
+		<label th:for="${akun.Email}">
+		Email</label>
+		<input type="text" th:field= "*{Email}"
 		th:errorclass="fieldError"/>
-		<p th:if="${#fields.hasErrors('keterangan')}"
-		th:errors="*{keterangan}"> Keterangan </p>
+		<p th:if="${#fields.hasErrors('Email')}"
+		th:errors="*{Email}"> Email </p>
 	</div>
 	
 	<div>
 		<input type="submit" value="SIMPAN"/>
-		<input type="hidden" th:field="*{skillId}" th:value="*{skillId}"/>
+		<input type="hidden" th:field="*{akunId}" th:value="*{akunId}"/>
 	</div>
 	</form>
 </body>

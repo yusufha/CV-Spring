@@ -21,28 +21,13 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
 
 </head>
 <body>
-	<form action="#" th:action="@{/skill/edit}"
-	th:object="${skill}" method="post">
-	<div>
-		<label th:for="${skill.namaSkill}"> Skill </label>
-		<input type="text" th:field="*{skill}"
-		th:errorclass="fieldError"/>
-		<p th:if="${#fields.hasErrors('skill')}"
-		th:errors="*{namaSkill}"> Skill </p>
+	<div th:each="x : ${objPendidikan}">
+		<p th:text="${x.namaSekolah}"></p>
+		<p th:text="${x.jurusan}"></p>
+		<p th:text="${x.kota}"></p>
+		<p th:text="${x.tahunMulai}"></p>
+		<p th:text="${x.tahunSelesai}"></p>
+		<p th:text="${x.ipk}"></p>
 	</div>
-	<div>
-		<label th:for="${skill.keterangan}">
-		Keterangan</label>
-		<input type="text" th:field= "*{keterangan}"
-		th:errorclass="fieldError"/>
-		<p th:if="${#fields.hasErrors('keterangan')}"
-		th:errors="*{keterangan}"> Keterangan </p>
-	</div>
-	
-	<div>
-		<input type="submit" value="SIMPAN"/>
-		<input type="hidden" th:field="*{skillId}" th:value="*{skillId}"/>
-	</div>
-	</form>
 </body>
 </html>

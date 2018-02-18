@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Data Diri</title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="http://code.jquery.com/jquery-2.2.4.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("table").dataTable();
+	});
+</script>
+</head>
+<body>
+	<div>
+		<div class="widget" th="datadiri : ${semuaDatadiri}">
+			<a th:href="@{'/datadiri/add/'}">Add</a>
+		</div>
+		<br />
+		<table>
+			<thead>
+				<tr>
+					<th>Nama Lengkap</th>
+					<th>Umur</th>
+					<th>Skill(s)</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dd : ${semuaDatadiri}">
+					<td th:text="${dd.namaLengkap}" class="nl"></td>
+					<td th:text="${dd.umur}" class="umur"></td>
+					<td>
+						<ul th:each="s : ${dd.skilldiriList}">
+							<li th:text="${s.skill.namaSkill}"></li>
+						</ul>
+					</td>
+					<td><a th:href="@{'/datadiri/detail/' + ${dd.datadiriId}}">Detail</a>
+						<a th:href="@{'/datadiri/edit/' + ${dd.datadiriId}}"> Edit</a> <a
+						th:href="@{'/datadiri/' + ${dd.datadiriId}}"> Hapus</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

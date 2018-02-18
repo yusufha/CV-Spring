@@ -37,7 +37,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="x : ${semuaSkill}">
-					<td th:text="${x.skill}" class="sName"></td>
+					<td th:text="${x.namaSkill}" class="sName"></td>
 					<td th:text="${x.keterangan}" class="ket"></td>
 					<td><a th:href="@{'/skill/detail/' + ${x.skillId}}">Detail</a>
 						<a th:href="@{'/skill/edit/' + ${x.skillId}}"> Edit</a> <a

@@ -23,32 +23,37 @@
 </head>
 <body>
 	<div>
-		<div class="widget" th="data : ${semuaDatadiri}">
-			<a th:href="@{'/data/add'}">Add</a>
+		<div class="widget" th="pendidikan : ${semuaPendidikan}">
+			<a th:href="@{'/pendidikan/add/'}">Add</a>
 		</div>
 		<br />
 		<table>
 			<thead>
 				<tr>
-					<th>Nama</th>
-					<th>Umur</th>
-					<th>Skill</th>
-					<th>Details</th>
+					<th>Nama Sekolah</th>
+					<th>Jurusan</th>
+					<!--  
+					<th>Kota</th>
+					<th>Tahun Mulai</th>
+					<th>Tahun Selesai</th>
+					-->
+					<th>IPK</th>
+					<th>Detail</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="x : ${semuaDatadiri}">
-					<td th:text="${x.nama}" class="Name"></td>
-					<td th:text="${x.umur}" class="Umur"></td>
-					<td><ul th:each="y : ${x.skilldiriList}">
-						<li th:text="${y.skill.namaSkill}"></li>
-					</ul></td>
-				<!--  	<td th:text="${x.skilldiriList}" class="Skill"></td>-->
-				<!--    	<td th:each = "y : ${x.skilldiriList}" th:text="${y.namaSkill}" class="Skill"></td>
+				<tr th:each="x : ${semuaPendidikan}">
+					<td th:text="${x.namaSekolah}" class="ns"></td>
+					<td th:text="${x.jurusan}" class="j"></td>
+					<!--  
+					<td th:text="${x.kota}" class="k"></td>
+					<td th:text="${x.tahunMulai}" class="tm"></td>
+					<td th:text="${x.tahunSelesai}" class="ts"></td>
 					-->
-					<td><a th:href="@{'/data/detail/' + ${x.datadiriId}}">Detail</a>
-						<a th:href="@{'/data/edit/' + ${x.datadiriId}}"> Edit</a> <a
-						th:href="@{'/data/' + ${x.datadiriId}}"> Hapus</a></td>
+					<td th:text="${x.ipk}" class="ts"></td>
+					<td><a th:href="@{'/pendidikan/detail/' + ${x.pendidikanId}}">Detail</a>
+						<a th:href="@{'/pendidikan/edit/' + ${x.pendidikanId}}"> Edit</a> <a
+						th:href="@{'/pendidikan/' + ${x.pendidikanId}}"> Hapus</a></td>
 				</tr>
 			</tbody>
 		</table>

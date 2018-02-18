@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Datadiri.findAll", query = "SELECT d FROM Datadiri d")
     , @NamedQuery(name = "Datadiri.findByDatadiriId", query = "SELECT d FROM Datadiri d WHERE d.datadiriId = :datadiriId")
-    , @NamedQuery(name = "Datadiri.findByNama", query = "SELECT d FROM Datadiri d WHERE d.nama = :nama")
+    , @NamedQuery(name = "Datadiri.findByNamaLengkap", query = "SELECT d FROM Datadiri d WHERE d.namaLengkap = :namaLengkap")
     , @NamedQuery(name = "Datadiri.findByUmur", query = "SELECT d FROM Datadiri d WHERE d.umur = :umur")
     , @NamedQuery(name = "Datadiri.findByTempatLahir", query = "SELECT d FROM Datadiri d WHERE d.tempatLahir = :tempatLahir")
     , @NamedQuery(name = "Datadiri.findByTanggalLahir", query = "SELECT d FROM Datadiri d WHERE d.tanggalLahir = :tanggalLahir")
@@ -59,8 +59,8 @@ public class Datadiri implements Serializable {
     @Column(name = "DATADIRI_ID")
     private Integer datadiriId;
     @Size(max = 50)
-    @Column(name = "NAMA")
-    private String nama;
+    @Column(name = "NAMA_LENGKAP")
+    private String namaLengkap;
     @Size(max = 45)
     @Column(name = "UMUR")
     private String umur;
@@ -124,12 +124,12 @@ public class Datadiri implements Serializable {
         this.datadiriId = datadiriId;
     }
 
-    public String getNama() {
-        return nama;
+    public String getNamaLengkap() {
+        return namaLengkap;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setNamaLengkap(String namaLengkap) {
+        this.namaLengkap = namaLengkap;
     }
 
     public String getUmur() {

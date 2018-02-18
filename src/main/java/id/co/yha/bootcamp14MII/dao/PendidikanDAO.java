@@ -29,7 +29,7 @@ public class PendidikanDAO {
 
 	public Pendidikan getPendidikan(int id) {
 		return (Pendidikan) factory.createEntityManager()
-				.createQuery("from Pendidikan where datadiriId =" +id )
+				.createQuery("from Pendidikan where pendidikanId =" +id )
 				.getSingleResult();
 	}
 	
