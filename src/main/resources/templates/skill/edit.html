@@ -25,9 +25,9 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
 	th:object="${skill}" method="post">
 	<div>
 		<label th:for="${skill.namaSkill}"> Skill </label>
-		<input type="text" th:field="*{skill}"
+		<input type="text" th:field="*{namaSkill}"
 		th:errorclass="fieldError"/>
-		<p th:if="${#fields.hasErrors('skill')}"
+		<p th:if="${#fields.hasErrors('namaSkill')}"
 		th:errors="*{namaSkill}"> Skill </p>
 	</div>
 	<div>
