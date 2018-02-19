@@ -35,47 +35,50 @@
 </head>
 <body>
 	<div th:each="dd : ${objekDatadiri}">
-		<div>
-			<p th:text="${dd.namaLengkap}"></p>
+		<div class="form-group col-md-6">
+			Nama			: <p th:text="${dd.namaLengkap}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.umur}"></p>
+		<div class="form-group col-md-6">
+			Umur			:<p th:text="${dd.umur}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.tempatLahir}"></p>
+		<!-- <div class="form-group col-md-6">
+			Tempat Lahir :<p th:text="${dd.tempatLahir}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.tanggalLahir}"></p>
+		<div class="form-group col-md-6">
+			Tanggal Lahir :<p th:text="${dd.tanggalLahir}" class="form-control"></p>
+		</div> -->
+		<div class="form-group col-md-6">
+			Jenis Kelamin	:<p th:text="${dd.gender}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.gender}"></p>
+		<div class="form-group col-md-6">
+			Agama			:<p th:text="${dd.agama}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.agama}"></p>
+		<div class="form-group col-md-6">
+			Kewarganegaraan	:<p th:text="${dd.kewarganegaraan}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.kewarganegaraan}"></p>
+		<div class="form-group col-md-6">
+			Status Perkawinan	:<p th:text="${dd.statusPerkawinan}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.statusPerkawinan}"></p>
+		<!-- <div class="form-group col-md-6">
+			Tinggi	:<p th:text="${dd.tinggi}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.tinggi}"></p>
+		<div class="form-group col-md-6">
+			Berat	:<p th:text="${dd.berat}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.berat}"></p>
+		<div class="form-group col-md-6">
+			Alamat	:<p th:text="${dd.alamat}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.alamat}"></p>
+		<div class="form-group col-md-6">
+			Foto Terbaru :<p th:text="${dd.foto}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.foto}"></p>
+		<div class="form-group col-md-6">
+			<p th:text="${dd.profilSingkat}" class="form-control"></p>
+		</div> -->
+		<div class="form-group col-md-6" th:each="p : ${dd.pendidikanList}">
+			Nama Sekolah	:<p th:text="${p.namaSekolah}" class="form-control"></p>
 		</div>
-		<div>
-			<p th:text="${dd.profilSingkat}"></p>
-		</div>
-		<div th:each="p : ${dd.pendidikanList}">
-			<p th:text="${p.namaSekolah}"></p>
+		<div class="form-group col-md-6" th:each="p : ${dd.skilldiriList}">
+			Skill			:<p th:text="${p.skill.namaSkill}" class="form-control"></p>
 		</div>
 	</div>
 </body>

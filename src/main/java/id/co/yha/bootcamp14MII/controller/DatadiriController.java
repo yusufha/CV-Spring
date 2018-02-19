@@ -65,4 +65,10 @@ public class DatadiriController {
 		}
 	}
 	
+	@GetMapping("/x")
+	public String x(Model model) {
+		model.addAttribute("data", new Datadiri());
+		return "datadiri/x";
+	}
+	
 }
