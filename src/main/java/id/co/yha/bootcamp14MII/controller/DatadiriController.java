@@ -50,7 +50,7 @@ public class DatadiriController {
 	}
 	
 	@GetMapping("/edit/{datadiriId}")
-	public String editForm(Model model, @PathVariable("akunId") int id) {
+	public String editForm(Model model, @PathVariable("datadiriId") int id) {
 		model.addAttribute("datadiri", datadiriDAO.getDatadiri(id));
 		return "datadiri/edit";
 	}

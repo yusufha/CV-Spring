@@ -32,32 +32,32 @@
 		method="post">
 		<div class="form-group col-md-6">
 			<label th:for="${datadiri.namaLengkap}"> Nama Lengkap </label> <input
-				type="text" th:field="*{namaLengkap}" th:errorclass="fieldError" />
+				type="text" th:field="*{namaLengkap}" th:errorclass="fieldError" class="form-control"  />
 		</div>
-		<div>
+		<div class="form-group col-md-6">
 			<label th:for="${datadiri.umur}"> Umur </label> <input type="text"
-				th:field="*{umur}" th:errorclass="fieldError" />
+				th:field="*{umur}" th:errorclass="fieldError" class="form-control"  />
 		</div>
 		
 		<!-- <div>
 			<label th:for="${datadiri.tempatLahir}"> Tempat Lahir </label> <input type="text"
-				th:field="*{tempatLahir}" th:errorclass="fieldError" />
+				th:field="*{tempatLahir}" th:errorclass="fieldError" class="form-control"  />
 		</div>-->
-		<div>
+		<div class="form-group col-md-6">
 			<label th:for="${datadiri.gender}"> Jenis Kelamin </label> <input type="text"
-				th:field="*{gender}" th:errorclass="fieldError" />
+				th:field="*{gender}" th:errorclass="fieldError" class="form-control"  />
 		</div>
-		<div>
+		<div class="form-group col-md-6">
 			<label th:for="${datadiri.agama}"> Agama </label> <input type="text"
-				th:field="*{agama}" th:errorclass="fieldError" />
+				th:field="*{agama}" th:errorclass="fieldError" class="form-control" />
 		</div>
-		<div>
+		<div class="form-group col-md-6">
 			<label th:for="${datadiri.kewarganegaraan}"> Kewarganegaraan </label> <input type="text"
-				th:field="*{kewarganegaraan}" th:errorclass="fieldError" />
+				th:field="*{kewarganegaraan}" th:errorclass="fieldError" class="form-control" />
 		</div>
-		<div>
+		<div class="form-group col-md-6">
 			<label th:for="${datadiri.statusPerkawinan}"> Status Perkawinan </label> <input type="text"
-				th:field="*{statusPerkawinan}" th:errorclass="fieldError" />
+				th:field="*{statusPerkawinan}" th:errorclass="fieldError" class="form-control"  />
 		</div>
 		<!--
 		<div>
@@ -86,7 +86,7 @@
 				th:field="*{profilSingkat}" th:errorclass="fieldError" />
 		</div>
 		-->
-		<div>
+		<div class="form-group col-md-6">
 			<input type="submit" value="SIMPAN" />
 		</div>
 	</form>

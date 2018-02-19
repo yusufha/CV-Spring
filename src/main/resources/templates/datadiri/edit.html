@@ -21,28 +21,68 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
 
 </head>
 <body>
-	<form action="#" th:action="@{/akun/edit}"
-	th:object="${akun}" method="post">
-	<div>
-		<label th:for="${akun.username}"> User Name </label>
-		<input type="text" th:field="*{username}"
-		th:errorclass="fieldError"/>
-		<p th:if="${#fields.hasErrors('username')}"
-		th:errors="*{username}"> User Name </p>
-	</div>
-	<div>
-		<label th:for="${akun.Email}">
-		Email</label>
-		<input type="text" th:field= "*{Email}"
-		th:errorclass="fieldError"/>
-		<p th:if="${#fields.hasErrors('Email')}"
-		th:errors="*{Email}"> Email </p>
-	</div>
-	
-	<div>
-		<input type="submit" value="SIMPAN"/>
-		<input type="hidden" th:field="*{akunId}" th:value="*{akunId}"/>
-	</div>
+	<form action="#" th:action="@{/datadiri/edit}" th:object="${datadiri}"
+		method="post">
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.namaLengkap}"> Nama Lengkap </label> <input
+				type="text" th:field="*{namaLengkap}" th:errorclass="fieldError" class="form-control"  />
+		</div>
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.umur}"> Umur </label> <input type="text"
+				th:field="*{umur}" th:errorclass="fieldError" class="form-control"  />
+		</div>
+		
+		<!-- <div>
+			<label th:for="${datadiri.tempatLahir}"> Tempat Lahir </label> <input type="text"
+				th:field="*{tempatLahir}" th:errorclass="fieldError" class="form-control" />
+		</div>-->
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.gender}"> Jenis Kelamin </label> <input type="text"
+				th:field="*{gender}" th:errorclass="fieldError" class="form-control" />
+		</div>
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.agama}"> Agama </label> <input type="text"
+				th:field="*{agama}" th:errorclass="fieldError" class="form-control"  />
+		</div>
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.kewarganegaraan}"> Kewarganegaraan </label> <input type="text"
+				th:field="*{kewarganegaraan}" th:errorclass="fieldError" class="form-control"  />
+		</div>
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.statusPerkawinan}"> Status Perkawinan </label> <input type="text"
+				th:field="*{statusPerkawinan}" th:errorclass="fieldError" class="form-control"  />
+		</div>
+		<!--
+		<div>
+			<label th:for="${datadiri.tanggalLahir}"> Tanggal Lahir </label> <input type="text"
+				th:field="*{tanggalLahir}" th:errorclass="fieldError" />
+		</div>
+		
+		<div>
+			<label th:for="${datadiri.tinggi}"> Tinggi Badan </label> <input type="text"
+				th:field="*{tinggi}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.berat}"> Berat Badan </label> <input type="text"
+				th:field="*{berat}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.alamat}"> Alamat </label> <input type="text"
+				th:field="*{alamat}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.foto}"> Foto </label> <input type="text"
+				th:field="*{foto}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.profilSingkat}"> Profil Singkat </label> <input type="text"
+				th:field="*{profilSingkat}" th:errorclass="fieldError" />
+		</div>
+		-->
+		<div class="form-group col-md-6">
+			<input type="submit" value="SIMPAN" />
+			<input type="hidden" th:field="*{datadiriId}" th:value="*{datadiriId}"/>
+		</div>
 	</form>
 </body>
 </html>
