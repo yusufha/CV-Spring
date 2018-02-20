@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Skill.findAll", query = "SELECT s FROM Skill s")
     , @NamedQuery(name = "Skill.findBySkillId", query = "SELECT s FROM Skill s WHERE s.skillId = :skillId")
     , @NamedQuery(name = "Skill.findByNamaSkill", query = "SELECT s FROM Skill s WHERE s.namaSkill = :namaSkill")
-    , @NamedQuery(name = "Skill.findByKeterangan", query = "SELECT s FROM Skill s WHERE s.keterangan = :keterangan")})
+    , @NamedQuery(name = "Skill.findByKeterangan", query = "SELECT s FROM Skill s WHERE s.keterangan = :keterangan")
+    , @NamedQuery(name = "Skill.findByIsActive", query = "SELECT s FROM Skill s WHERE s.isActive = :isActive")})
 public class Skill implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,6 +50,8 @@ public class Skill implements Serializable {
     @Size(max = 50)
     @Column(name = "KETERANGAN")
     private String keterangan;
+    @Column(name = "IS_ACTIVE")
+    private Integer isActive;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "skill", fetch = FetchType.LAZY)
     private List<Skilldiri> skilldiriList;
 
@@ -81,6 +84,14 @@ public class Skill implements Serializable {
 
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
+    }
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 
     @XmlTransient

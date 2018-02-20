@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Pendidikan.findByKota", query = "SELECT p FROM Pendidikan p WHERE p.kota = :kota")
     , @NamedQuery(name = "Pendidikan.findByTahunMulai", query = "SELECT p FROM Pendidikan p WHERE p.tahunMulai = :tahunMulai")
     , @NamedQuery(name = "Pendidikan.findByTahunSelesai", query = "SELECT p FROM Pendidikan p WHERE p.tahunSelesai = :tahunSelesai")
-    , @NamedQuery(name = "Pendidikan.findByIpk", query = "SELECT p FROM Pendidikan p WHERE p.ipk = :ipk")})
+    , @NamedQuery(name = "Pendidikan.findByIpk", query = "SELECT p FROM Pendidikan p WHERE p.ipk = :ipk")
+    , @NamedQuery(name = "Pendidikan.findByIsActive", query = "SELECT p FROM Pendidikan p WHERE p.isActive = :isActive")})
 public class Pendidikan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,6 +64,8 @@ public class Pendidikan implements Serializable {
     @Size(max = 4)
     @Column(name = "IPK")
     private String ipk;
+    @Column(name = "IS_ACTIVE")
+    private Integer isActive;
     @JoinColumn(name = "DATADIRI_ID", referencedColumnName = "DATADIRI_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Datadiri datadiriId;
@@ -128,6 +131,14 @@ public class Pendidikan implements Serializable {
 
     public void setIpk(String ipk) {
         this.ipk = ipk;
+    }
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 
     public Datadiri getDatadiriId() {

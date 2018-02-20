@@ -97,7 +97,7 @@ public class Datadiri implements Serializable {
     @Column(name = "PROFIL_SINGKAT")
     private String profilSingkat;
     @Column(name = "IS_ACTIVE")
-    private Short isActive;
+    private Integer isActive;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Pekerjaan> pekerjaanList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
@@ -106,6 +106,8 @@ public class Datadiri implements Serializable {
     private List<Organisasi> organisasiList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "datadiri", fetch = FetchType.LAZY)
     private List<Skilldiri> skilldiriList;
+    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
+    private List<Akun> akunList;
     @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
     private List<Penghargaan> penghargaanList;
 
@@ -228,11 +230,11 @@ public class Datadiri implements Serializable {
         this.profilSingkat = profilSingkat;
     }
 
-    public Short getIsActive() {
+    public Integer getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(Short isActive) {
+    public void setIsActive(Integer isActive) {
         this.isActive = isActive;
     }
 
@@ -270,6 +272,15 @@ public class Datadiri implements Serializable {
 
     public void setSkilldiriList(List<Skilldiri> skilldiriList) {
         this.skilldiriList = skilldiriList;
+    }
+
+    @XmlTransient
+    public List<Akun> getAkunList() {
+        return akunList;
+    }
+
+    public void setAkunList(List<Akun> akunList) {
+        this.akunList = akunList;
     }
 
     @XmlTransient

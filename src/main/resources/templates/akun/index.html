@@ -70,6 +70,20 @@ footer {
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("table").dataTable();
+
+		$(".delete").click(function() {
+			var idx = $(".delete").index(this);
+			var id = $(".cass:eq(" + idx + ")").val();
+			var url = "/deleteAkun";
+			var choice = confirm('Do you really want to delete this record?');
+			if (choice == true) {
+				$.get(url, {akunId : id}).done(function(){
+					location.reload();
+				});
+			} else {
+				return false;
+			};
+		});
 	});
 </script>
 </head>
@@ -115,8 +129,9 @@ footer {
 					<td th:text="${akun.username}" class="uName"></td>
 					<td th:text="${akun.email}" class="email"></td>
 					<td><a th:href="@{'/akun/detail/' + ${akun.akunId}}">Detail</a>
-						<a th:href="@{'/akun/edit/' + ${akun.akunId}}"> Edit</a> <a
-						th:href="@{'/akun/' + ${akun.akunId}}"> Hapus</a></td>
+						<a th:href="@{'/akun/edit/' + ${akun.akunId}}"> Edit</a> 
+						<a href="##" class="delete"> Hapus</a> <input type="hidden"
+						class="cass" th:value="${akun.akunId}" /></td>
 				</tr>
 			</tbody>
 		</table>

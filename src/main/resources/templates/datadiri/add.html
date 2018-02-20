@@ -22,8 +22,6 @@
 	$(function() {
 		$("#accordion").accordion();
 		var spinner1 = $("#spinner1").spinner();
-		var spinner2 = $("#spinner2").spinner();
-		var spinner3 = $("#spinner3").spinner();
 	});
 </script>
 </head>
@@ -83,16 +81,17 @@
 				<option value="Menikah">Menikah</option>
 			</select>
 		</div>
+		<!--
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.statusPerkawinan}"> Status
-				Perkawinan </label> <select id="inputSP" th:field="*{statusPerkawinan}"
-				th:errorclass="fieldError" class="form-control" th:each="p : ${datadiri.skilldiriList}">
+			<label th:for="${skilldiri}"> Skill</label> 
+			<select id="inputSP" th:field="*{skilldiri.skill.nama}"
+				th:errorclass="fieldError" class="form-control">
 				<option value="">Choose...</option>
-				<option value="p.skill.namaSkill"></option>
-				<option value="p.skill.namaSkill"></option>
+				<option th:each="p : ${datadiri.skilldiriList}" value="p.skill.namaSkill"></option>
+				<option th:each="p : ${datadiri.skilldiriList}" value="p.skill.namaSkill"></option>
 			</select>
 		</div>
-		<!--
+		
 		<div>
 			<label th:for="${datadiri.tanggalLahir}"> Tanggal Lahir </label> <input type="text"
 				th:field="*{tanggalLahir}" th:errorclass="fieldError" />

@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Pekerjaan.findByKota", query = "SELECT p FROM Pekerjaan p WHERE p.kota = :kota")
     , @NamedQuery(name = "Pekerjaan.findByTahunMulai", query = "SELECT p FROM Pekerjaan p WHERE p.tahunMulai = :tahunMulai")
     , @NamedQuery(name = "Pekerjaan.findByTahunSelesai", query = "SELECT p FROM Pekerjaan p WHERE p.tahunSelesai = :tahunSelesai")
-    , @NamedQuery(name = "Pekerjaan.findByKeterangan", query = "SELECT p FROM Pekerjaan p WHERE p.keterangan = :keterangan")})
+    , @NamedQuery(name = "Pekerjaan.findByKeterangan", query = "SELECT p FROM Pekerjaan p WHERE p.keterangan = :keterangan")
+    , @NamedQuery(name = "Pekerjaan.findByIsActive", query = "SELECT p FROM Pekerjaan p WHERE p.isActive = :isActive")})
 public class Pekerjaan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,6 +64,8 @@ public class Pekerjaan implements Serializable {
     @Size(max = 100)
     @Column(name = "KETERANGAN")
     private String keterangan;
+    @Column(name = "IS_ACTIVE")
+    private Integer isActive;
     @JoinColumn(name = "DATADIRI_ID", referencedColumnName = "DATADIRI_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Datadiri datadiriId;
@@ -128,6 +131,14 @@ public class Pekerjaan implements Serializable {
 
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
+    }
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 
     public Datadiri getDatadiriId() {

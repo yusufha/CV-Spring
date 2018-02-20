@@ -25,17 +25,11 @@ public class SkillDAO {
 	
 	public List<Skill> getAllSkill(){
 		return factory.createEntityManager()
-				.createQuery("from Skill")
+				.createQuery("from Skill where isActive = 1")
 				.getResultList();
 	}
 
 	public Skill getSkill(int id) {
-		return (Skill) factory.createEntityManager()
-				.createQuery("from Skill where datadiriId =" +id )
-				.getSingleResult();
-	}
-	
-	public Skill getSkillData(int id) {
 		return (Skill) factory.createEntityManager()
 				.createQuery("from Skill where skillId =" +id )
 				.getSingleResult();
@@ -48,6 +42,7 @@ public class SkillDAO {
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
+			skill.setIsActive(1);
 			eManager.persist(skill);
 			transaksi.commit();
 		} catch(Exception e) {
@@ -70,6 +65,7 @@ public class SkillDAO {
 							updatedSkill.getSkillId());
 			excistingSkill.setNamaSkill(updatedSkill.getNamaSkill());
 			excistingSkill.setKeterangan(updatedSkill.getKeterangan());
+			excistingSkill.setIsActive(updatedSkill.getIsActive());
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();

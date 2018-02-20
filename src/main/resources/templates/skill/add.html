@@ -23,23 +23,22 @@ integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwE
 <body>
 	<form action="#" th:action="@{/skill/add}"
 	th:object="${skill}" method="post">
-	<div>
+	<div class="form-group col-md-6">
 		<label th:for="${skill.namaSkill}"> Skill </label>
 		<input type="text" th:field="*{namaSkill}"
-		th:errorclass="fieldError"/>
+		th:errorclass="fieldError" class="form-control"/>
 		<p th:if="${#fields.hasErrors('namaSkill')}"
 		th:errors="*{namaSkill}"> Skill </p>
 	</div>
-	<div>
+	<div class="form-group col-md-6">
 		<label th:for="${skill.keterangan}">
 		Keterangan</label>
 		<input type="text" th:field= "*{keterangan}"
-		th:errorclass="fieldError"/>
+		th:errorclass="fieldError" class="form-control"/>
 		<p th:if="${#fields.hasErrors('keterangan')}"
 		th:errors="*{keterangan}"> Keterangan </p>
 	</div>
-	
-	<div>
+	<div class="form-group col-md-6">
 		<input type="submit" value="SIMPAN"/>
 	</div>
 	</form>

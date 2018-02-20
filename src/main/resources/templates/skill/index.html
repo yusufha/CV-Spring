@@ -69,6 +69,20 @@ footer {
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("table").dataTable();
+		
+		$(".hapus").click(function() {
+			var idx = $(".hapus").index(this);
+			var id= $(".cas:eq(" + idx + ")").val();
+			var url = "/deleteSkill";
+			var choice = confirm('Do you really want to delete this record?');
+			if (choice == true) {
+				$.get(url, {skillId : id}).done(function(){
+					location.reload();
+				});
+			} else {
+				return false;
+			};
+		});
 	});
 </script>
 </head>
@@ -114,8 +128,11 @@ footer {
 					<td th:text="${x.namaSkill}" class="sName"></td>
 					<td th:text="${x.keterangan}" class="ket"></td>
 					<td><a th:href="@{'/skill/detail/' + ${x.skillId}}">Detail</a>
-						<a th:href="@{'/skill/edit/' + ${x.skillId}}"> Edit</a> <a
-						th:href="@{'/skill/' + ${x.skillId}}"> Hapus</a></td>
+						<a th:href="@{'/skill/edit/' + ${x.skillId}}"> Edit</a> 
+						<a href="#" class="hapus"> Hapus</a>
+						<input type="hidden" class="cas"
+						th:value="${x.skillId}"/>
+					</td>
 				</tr>
 			</tbody>
 		</table>

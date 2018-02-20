@@ -25,7 +25,7 @@ public class DatadiriDAO {
 	
 	public List<Datadiri> getAllDatadiri(){
 		return factory.createEntityManager()
-				.createQuery("from Datadiri")
+				.createQuery("from Datadiri where isActive = 1")
 				.getResultList();
 	}
 
@@ -42,6 +42,7 @@ public class DatadiriDAO {
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
+			datadiri.setIsActive(1);
 			eManager.persist(datadiri);
 			transaksi.commit();
 		} catch(Exception e) {
@@ -75,6 +76,25 @@ public class DatadiriDAO {
 			excistingDatadiri.setAlamat(updatedDatadiri.getAlamat());
 			excistingDatadiri.setFoto(updatedDatadiri.getFoto());
 			excistingDatadiri.setProfilSingkat(updatedDatadiri.getProfilSingkat());
+			excistingDatadiri.setIsActive(updatedDatadiri.getIsActive());
+			transaksi.commit();
+		} catch(Exception e) {
+			transaksi.rollback();
+			isSuccess = false;
+			System.out.println(e.getMessage());
+		}
+		return isSuccess;
+	}
+	
+	public boolean deleteDatadiri(Datadiri dd) {
+		EntityManager eManager = factory.createEntityManager();
+		EntityTransaction transaksi = null;
+		boolean isSuccess = true;
+		try {
+			transaksi = eManager.getTransaction();
+			transaksi.begin();
+			Datadiri exisDD = (Datadiri) eManager.find(Datadiri.class, dd.getDatadiriId());
+			exisDD.setIsActive(dd.getIsActive());
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();

@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Penghargaan.findByPenghargaanId", query = "SELECT p FROM Penghargaan p WHERE p.penghargaanId = :penghargaanId")
     , @NamedQuery(name = "Penghargaan.findByPenghargaan", query = "SELECT p FROM Penghargaan p WHERE p.penghargaan = :penghargaan")
     , @NamedQuery(name = "Penghargaan.findByKeterangan", query = "SELECT p FROM Penghargaan p WHERE p.keterangan = :keterangan")
-    , @NamedQuery(name = "Penghargaan.findByGambar", query = "SELECT p FROM Penghargaan p WHERE p.gambar = :gambar")})
+    , @NamedQuery(name = "Penghargaan.findByGambar", query = "SELECT p FROM Penghargaan p WHERE p.gambar = :gambar")
+    , @NamedQuery(name = "Penghargaan.findByIsActive", query = "SELECT p FROM Penghargaan p WHERE p.isActive = :isActive")})
 public class Penghargaan implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,6 +52,8 @@ public class Penghargaan implements Serializable {
     @Size(max = 50)
     @Column(name = "GAMBAR")
     private String gambar;
+    @Column(name = "IS_ACTIVE")
+    private Integer isActive;
     @JoinColumn(name = "DATADIRI_ID", referencedColumnName = "DATADIRI_ID")
     @ManyToOne(fetch = FetchType.LAZY)
     private Datadiri datadiriId;
@@ -92,6 +95,14 @@ public class Penghargaan implements Serializable {
 
     public void setGambar(String gambar) {
         this.gambar = gambar;
+    }
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 
     public Datadiri getDatadiriId() {

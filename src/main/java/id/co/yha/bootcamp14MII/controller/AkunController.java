@@ -70,28 +70,5 @@ public class AkunController {
 			return "akun/edit/";
 		}
 	}
-	
-	@DeleteMapping("/akun/{id}")
-	   public ResponseEntity<?> delete(@PathVariable("akunId") int id) {
-	      akunDAO.delete(id);
-	      return ResponseEntity.ok().body("Akun has been deleted successfully.");
-	}
-	
-//	@RequestMapping(value = "items/{id}", method = RequestMethod.DELETE)
-//	public String delete(@PathVariable("akunId") int id) {
-////	    Akun akun = akunDAO.getAkun(id);
-//	    akunDAO.delete(id); 
-//
-//	    return "redirect:/akun/index";
-//	}
-	
-//	@DeleteMapping("/hapus/{id}")
-//	public ResponseEntity<Akun> deleteAkun(@PathVariable("akunId") int id) {
-//	    if(akun == null) {
-//	        return ResponseEntity.notFound().build();
-//	    }
-//	    akunDAO.delete(id);
-//	    return ResponseEntity.ok().build();
-//	}
 
 }

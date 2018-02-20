@@ -25,7 +25,7 @@ public class AkunDAO {
 	
 	public List<Akun> getAllAkun(){
 		return factory.createEntityManager()
-				.createQuery("from Akun")
+				.createQuery("from Akun where isActive = 1")
 				.getResultList();
 	}
 
@@ -42,6 +42,7 @@ public class AkunDAO {
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
+			akun.setIsActive(1);
 			eManager.persist(akun);
 			transaksi.commit();
 		} catch(Exception e) {
@@ -64,6 +65,7 @@ public class AkunDAO {
 							updatedAkun.getAkunId());
 			excistingAkun.setUsername(updatedAkun.getUsername());
 			excistingAkun.setEmail(updatedAkun.getEmail());
+			excistingAkun.setIsActive(updatedAkun.getIsActive());
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();
@@ -72,14 +74,4 @@ public class AkunDAO {
 		}
 		return isSuccess;
 	}
-	
-	public void delete(int id)
-	{
-		EntityManager eManager = factory.createEntityManager();
-		Akun akun = eManager.find(Akun.class, id);
-		eManager.getTransaction().begin();
-	    eManager.remove(akun);
-	    eManager.getTransaction().commit();
-	}
-
 }

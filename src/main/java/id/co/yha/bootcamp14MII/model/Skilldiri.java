@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Skilldiri.findAll", query = "SELECT s FROM Skilldiri s")
     , @NamedQuery(name = "Skilldiri.findByDatadiriId", query = "SELECT s FROM Skilldiri s WHERE s.skilldiriPK.datadiriId = :datadiriId")
     , @NamedQuery(name = "Skilldiri.findBySkillId", query = "SELECT s FROM Skilldiri s WHERE s.skilldiriPK.skillId = :skillId")
-    , @NamedQuery(name = "Skilldiri.findByNama", query = "SELECT s FROM Skilldiri s WHERE s.nama = :nama")})
+    , @NamedQuery(name = "Skilldiri.findByNama", query = "SELECT s FROM Skilldiri s WHERE s.nama = :nama")
+    , @NamedQuery(name = "Skilldiri.findByIsActive", query = "SELECT s FROM Skilldiri s WHERE s.isActive = :isActive")})
 public class Skilldiri implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,6 +39,8 @@ public class Skilldiri implements Serializable {
     @Size(max = 45)
     @Column(name = "NAMA")
     private String nama;
+    @Column(name = "IS_ACTIVE")
+    private Integer isActive;
     @JoinColumn(name = "DATADIRI_ID", referencedColumnName = "SKILL_ID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Skill skill;
@@ -70,6 +73,14 @@ public class Skilldiri implements Serializable {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 
     public Skill getSkill() {
