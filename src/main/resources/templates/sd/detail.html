@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous" />
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="http://code.jquery.com/jquery-2.2.4.js"
+	integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+</head>
+<body>
+	<div th:each="sd : ${objekSD}">
+		<div class="form-group col-md-6">
+			Nama			: <p th:text="${sd.datadiri.namaLengkap}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			Umur			:<p th:text="${sd.datadiri.umur}" class="form-control"></p>
+		</div>
+		<!-- <div class="form-group col-md-6">
+			Tempat Lahir :<p th:text="${sd.datadiri.tempatLahir}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			Tanggal Lahir :<p th:text="${dd.tanggalLahir}" class="form-control"></p>
+		</div> -->
+		<div class="form-group col-md-6">
+			Jenis Kelamin	:<p th:text="${sd.datadiri.gender}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			Agama			:<p th:text="${sd.datadiri.agama}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			Kewarganegaraan	:<p th:text="${sd.datadiri.kewarganegaraan}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			Status Perkawinan	:<p th:text="${sd.datadiri.statusPerkawinan}" class="form-control"></p>
+		</div>
+		<!-- <div class="form-group col-md-6">
+			Tinggi	:<p th:text="${dd.tinggi}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			Berat	:<p th:text="${dd.berat}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			Alamat	:<p th:text="${dd.alamat}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			Foto Terbaru :<p th:text="${dd.foto}" class="form-control"></p>
+		</div>
+		<div class="form-group col-md-6">
+			<p th:text="${dd.profilSingkat}" class="form-control"></p>
+		</div> 
+		<div class="form-group col-md-6" th:each="p : ${sd.datadiri.pendidikanList}">
+			Nama Sekolah	:<p th:text="${p.namaSekolah}" class="form-control"></p>
+		</div> 
+		<div class="form-group col-md-6">
+			Skill			:<p th:text="${sd.skill.namaSkill}" class="form-control"></p>
+		</div>-->
+	</div>
+</body>
+</html>

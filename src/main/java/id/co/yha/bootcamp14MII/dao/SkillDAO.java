@@ -18,7 +18,7 @@ import id.co.yha.bootcamp14MII.model.Skill;
 public class SkillDAO {
 
 	private static final Logger log = 
-			LoggerFactory.getLogger(AkunDAO.class);
+			LoggerFactory.getLogger(SkillDAO.class);
 	
 	@Autowired
 	private EntityManagerFactory factory;

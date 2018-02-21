@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import id.co.yha.bootcamp14MII.dao.DatadiriDAO;
+import id.co.yha.bootcamp14MII.dao.SkillDAO;
+import id.co.yha.bootcamp14MII.dao.SkillDiriDAO;
 import id.co.yha.bootcamp14MII.model.Datadiri;
+import id.co.yha.bootcamp14MII.model.Skill;
+import id.co.yha.bootcamp14MII.model.Skilldiri;
 
 @Controller
 @RequestMapping("datadiri")
@@ -21,6 +25,12 @@ public class DatadiriController {
 	@Autowired
 	private DatadiriDAO datadiriDAO;
 	
+	@Autowired
+	private SkillDAO skillDAO;
+	
+	@Autowired
+	private SkillDiriDAO skilldiriDAO;
+	 
 	@GetMapping("/index")
 	public String index(Model model) {
 		model.addAttribute("semuaDatadiri", datadiriDAO.getAllDatadiri());
@@ -36,6 +46,7 @@ public class DatadiriController {
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("datadiri", new Datadiri());
+		model.addAttribute("getSkill", skillDAO.getAllSkill());
 		return "datadiri/add";
 	}
 	
@@ -45,7 +56,7 @@ public class DatadiriController {
 			return "redirect:/datadiri/index";
 		}
 		else {
-			return "datadiri/add";
+			return "datadiri/x";
 		}
 	}
 	
@@ -64,11 +75,4 @@ public class DatadiriController {
 			return "datadiri/edit/";
 		}
 	}
-	
-	@GetMapping("/x")
-	public String x(Model model) {
-		model.addAttribute("data", new Datadiri());
-		return "datadiri/x";
-	}
-	
 }

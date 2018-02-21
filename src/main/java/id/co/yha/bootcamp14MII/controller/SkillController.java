@@ -32,7 +32,7 @@ public class SkillController {
 	
 	@GetMapping("/detail/{skillId}")
 	public String detail(Model model, @PathVariable("skillId") int id) {
-		model.addAttribute("objekSkill", skillDAO.getSkillData(id));
+		model.addAttribute("objekSkill", skillDAO.getSkill(id));
 		return "skill/detail";
 	}
 	
@@ -54,7 +54,7 @@ public class SkillController {
 	
 	@GetMapping("/edit/{skillId}")
 	public String editForm(Model model, @PathVariable("skillId") int id) {
-		model.addAttribute("skill", skillDAO.getSkillData(id));
+		model.addAttribute("skill", skillDAO.getSkill(id));
 		return "skill/edit";
 	}
 	
