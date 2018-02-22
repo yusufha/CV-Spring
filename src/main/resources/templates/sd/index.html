@@ -131,9 +131,9 @@ footer {
 				<tr th:each="sd : ${semuaSD}">
 					<td th:text="${sd.datadiri.namaLengkap}" class="nl"></td>
 					<td th:text="${sd.datadiri.umur}" class="umur"></td>
-					<td th:each="s : ${sd.skill}">
-						<ul th:text="${s.namaSkill}">
-							<!-- <li th:text="${s.namaSkill}"></li> -->
+					<td>
+						<ul th:each="s : ${sd.skill}"> 
+							<li th:text="${s.namaSkill}"> </li>
 						</ul>
 					</td>
 					<td><a th:href="@{'/sd/detail/' + ${sd.skilldiriPK}}" class="slass1">Detail</a>

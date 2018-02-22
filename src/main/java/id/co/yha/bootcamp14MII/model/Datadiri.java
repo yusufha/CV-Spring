@@ -16,9 +16,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Datadiri.findAll", query = "SELECT d FROM Datadiri d")
-    , @NamedQuery(name = "Datadiri.findByDatadiriId", query = "SELECT d FROM Datadiri d WHERE d.datadiriId = :datadiriId")
+    , @NamedQuery(name = "Datadiri.findById", query = "SELECT d FROM Datadiri d WHERE d.id = :id")
     , @NamedQuery(name = "Datadiri.findByNamaLengkap", query = "SELECT d FROM Datadiri d WHERE d.namaLengkap = :namaLengkap")
     , @NamedQuery(name = "Datadiri.findByUmur", query = "SELECT d FROM Datadiri d WHERE d.umur = :umur")
     , @NamedQuery(name = "Datadiri.findByTempatLahir", query = "SELECT d FROM Datadiri d WHERE d.tempatLahir = :tempatLahir")
@@ -56,8 +58,8 @@ public class Datadiri implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "DATADIRI_ID")
-    private Integer datadiriId;
+    @Column(name = "ID")
+    private Integer id;
     @Size(max = 50)
     @Column(name = "NAMA_LENGKAP")
     private String namaLengkap;
@@ -98,32 +100,33 @@ public class Datadiri implements Serializable {
     private String profilSingkat;
     @Column(name = "IS_ACTIVE")
     private Integer isActive;
-    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Pekerjaan> pekerjaanList;
-    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Pendidikan> pendidikanList;
-    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Organisasi> organisasiList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "datadiri", fetch = FetchType.LAZY)
     private List<Skilldiri> skilldiriList;
-    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
-    private List<Akun> akunList;
-    @OneToMany(mappedBy = "datadiriId", fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    private Akun akun;
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private List<Penghargaan> penghargaanList;
 
     public Datadiri() {
     }
 
-    public Datadiri(Integer datadiriId) {
-        this.datadiriId = datadiriId;
+    public Datadiri(Integer id) {
+        this.id = id;
     }
 
-    public Integer getDatadiriId() {
-        return datadiriId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDatadiriId(Integer datadiriId) {
-        this.datadiriId = datadiriId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNamaLengkap() {
@@ -274,13 +277,12 @@ public class Datadiri implements Serializable {
         this.skilldiriList = skilldiriList;
     }
 
-    @XmlTransient
-    public List<Akun> getAkunList() {
-        return akunList;
+    public Akun getAkun() {
+        return akun;
     }
 
-    public void setAkunList(List<Akun> akunList) {
-        this.akunList = akunList;
+    public void setAkun(Akun akun) {
+        this.akun = akun;
     }
 
     @XmlTransient
@@ -295,7 +297,7 @@ public class Datadiri implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (datadiriId != null ? datadiriId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -306,7 +308,7 @@ public class Datadiri implements Serializable {
             return false;
         }
         Datadiri other = (Datadiri) object;
-        if ((this.datadiriId == null && other.datadiriId != null) || (this.datadiriId != null && !this.datadiriId.equals(other.datadiriId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -314,7 +316,7 @@ public class Datadiri implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.model.Datadiri[ datadiriId=" + datadiriId + " ]";
+        return "id.co.yha.bootcamp14MII.model.Datadiri[ id=" + id + " ]";
     }
     
 }

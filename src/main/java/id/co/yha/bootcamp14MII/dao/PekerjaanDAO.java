@@ -40,6 +40,7 @@ public class PekerjaanDAO {
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
+			//kerja.
 			eManager.persist(kerja);
 			transaksi.commit();
 		} catch(Exception e) {

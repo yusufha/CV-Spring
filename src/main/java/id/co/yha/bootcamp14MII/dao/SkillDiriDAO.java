@@ -32,17 +32,16 @@ public class SkillDiriDAO {
 
 	public Skilldiri getSkilldiri(int id) {
 		return (Skilldiri) factory.createEntityManager()
-				.createQuery("from Skilldiri where datadiriId =" +id )
+				.createQuery("from Skilldiri where id =" +id )
 				.getSingleResult();
 	}
 	
-	public boolean addSkilldiri(Skilldiri sd, Datadiri dd) {
+	public boolean addSkilldiri(Skilldiri sd) {
 		EntityManager eManager = factory.createEntityManager();
 		EntityTransaction transaksi = null;
 		boolean isSuccess = true;
 		try {
-			dd.setDatadiriId(19);
-			eManager.merge(dd);
+			
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
 			sd.setIsActive(1);
@@ -69,7 +68,7 @@ public class SkillDiriDAO {
 							updatedSD.getSkilldiriPK());
 			excistingSD.setDatadiri(updatedSD.getDatadiri());
 			excistingSD.setSkill(updatedSD.getSkill());
-			excistingSD.setNama(updatedSD.getNama());
+			excistingSD.setKeterangan(updatedSD.getKeterangan());
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();

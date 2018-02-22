@@ -31,7 +31,7 @@ public class AkunDAO {
 
 	public Akun getAkun(int id) {
 		return (Akun) factory.createEntityManager()
-				.createQuery("from Akun where akunId =" +id )
+				.createQuery("from Akun where id =" +id )
 				.getSingleResult();
 	}
 	
@@ -62,7 +62,7 @@ public class AkunDAO {
 			transaksi.begin();
 			Akun excistingAkun = 
 					(Akun) eManager.find(Akun.class, 
-							updatedAkun.getAkunId());
+							updatedAkun.getId());
 			excistingAkun.setUsername(updatedAkun.getUsername());
 			excistingAkun.setEmail(updatedAkun.getEmail());
 			excistingAkun.setIsActive(updatedAkun.getIsActive());

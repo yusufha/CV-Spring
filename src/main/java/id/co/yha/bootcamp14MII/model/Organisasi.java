@@ -66,9 +66,9 @@ public class Organisasi implements Serializable {
     private String keterangan;
     @Column(name = "IS_ACTIVE")
     private Integer isActive;
-    @JoinColumn(name = "DATADIRI_ID", referencedColumnName = "DATADIRI_ID")
+    @JoinColumn(name = "ID", referencedColumnName = "ID")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Datadiri datadiriId;
+    private Datadiri id;
 
     public Organisasi() {
     }
@@ -141,12 +141,12 @@ public class Organisasi implements Serializable {
         this.isActive = isActive;
     }
 
-    public Datadiri getDatadiriId() {
-        return datadiriId;
+    public Datadiri getId() {
+        return id;
     }
 
-    public void setDatadiriId(Datadiri datadiriId) {
-        this.datadiriId = datadiriId;
+    public void setId(Datadiri id) {
+        this.id = id;
     }
 
     @Override

@@ -20,8 +20,8 @@ public class SkilldiriPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DATADIRI_ID")
-    private int datadiriId;
+    @Column(name = "ID")
+    private int id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "SKILL_ID")
@@ -30,17 +30,17 @@ public class SkilldiriPK implements Serializable {
     public SkilldiriPK() {
     }
 
-    public SkilldiriPK(int datadiriId, int skillId) {
-        this.datadiriId = datadiriId;
+    public SkilldiriPK(int id, int skillId) {
+        this.id = id;
         this.skillId = skillId;
     }
 
-    public int getDatadiriId() {
-        return datadiriId;
+    public int getId() {
+        return id;
     }
 
-    public void setDatadiriId(int datadiriId) {
-        this.datadiriId = datadiriId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getSkillId() {
@@ -54,7 +54,7 @@ public class SkilldiriPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) datadiriId;
+        hash += (int) id;
         hash += (int) skillId;
         return hash;
     }
@@ -66,7 +66,7 @@ public class SkilldiriPK implements Serializable {
             return false;
         }
         SkilldiriPK other = (SkilldiriPK) object;
-        if (this.datadiriId != other.datadiriId) {
+        if (this.id != other.id) {
             return false;
         }
         if (this.skillId != other.skillId) {
@@ -77,7 +77,7 @@ public class SkilldiriPK implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.model.SkilldiriPK[ datadiriId=" + datadiriId + ", skillId=" + skillId + " ]";
+        return "id.co.yha.bootcamp14MII.model.SkilldiriPK[ id=" + id + ", skillId=" + skillId + " ]";
     }
     
 }

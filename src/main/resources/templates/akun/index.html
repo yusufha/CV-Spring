@@ -128,10 +128,10 @@ footer {
 				<tr th:each="akun : ${semuaAkun}">
 					<td th:text="${akun.username}" class="uName"></td>
 					<td th:text="${akun.email}" class="email"></td>
-					<td><a th:href="@{'/akun/detail/' + ${akun.akunId}}">Detail</a>
-						<a th:href="@{'/akun/edit/' + ${akun.akunId}}"> Edit</a> 
+					<td><a th:href="@{'/akun/detail/' + ${akun.id}}">Detail</a>
+						<a th:href="@{'/akun/edit/' + ${akun.id}}"> Edit</a> 
 						<a href="##" class="delete"> Hapus</a> <input type="hidden"
-						class="cass" th:value="${akun.akunId}" /></td>
+						class="cass" th:value="${akun.id}" /></td>
 				</tr>
 			</tbody>
 		</table>

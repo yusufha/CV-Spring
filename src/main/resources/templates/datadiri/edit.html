@@ -36,27 +36,44 @@
 <body>
 	<form action="#" th:action="@{/datadiri/edit}" th:object="${datadiri}"
 		method="post">
-		<div class="form-group col-md-6">
+				<div class="form-group col-md-6">
 			<label th:for="${datadiri.namaLengkap}"> Nama Lengkap </label> <input
 				type="text" th:field="*{namaLengkap}" th:errorclass="fieldError"
 				class="form-control" />
 		</div>
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.umur}"> Umur </label> <input type="text"
-				th:field="*{umur}" th:errorclass="fieldError" class="form-control" />
+			<p>
+				<label th:for="${datadiri.umur}"> Umur </label> <input type="text"
+					th:field="*{umur}" th:errorclass="fieldError" class="form-control"
+					id="spinner1" name="value" />
+			</p>
 		</div>
+
 		<!-- <div>
 			<label th:for="${datadiri.tempatLahir}"> Tempat Lahir </label> <input type="text"
-				th:field="*{tempatLahir}" th:errorclass="fieldError" class="form-control" />
+				th:field="*{tempatLahir}" th:errorclass="fieldError" class="form-control"  />
 		</div>-->
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.gender}"> Jenis Kelamin </label> <input
-				type="text" th:field="*{gender}" th:errorclass="fieldError"
-				class="form-control" />
+			<label th:for="${datadiri.gender}"> Jenis Kelamin </label> <select
+				id="inputGender" th:field="*{gender}" th:errorclass="fieldError"
+				class="form-control">
+				<option value="">Choose...</option>
+				<option value="L">Laki-laki</option>
+				<option value="P">Perempuan</option>
+			</select>
 		</div>
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.agama}"> Agama </label> <input type="text"
-				th:field="*{agama}" th:errorclass="fieldError" class="form-control" />
+			<label th:for="${datadiri.agama}"> Agama </label> <select
+				id="inputAgama" th:field="*{agama}" th:errorclass="fieldError"
+				class="form-control">
+				<option value="">Choose...</option>
+				<option value="Islam">Islam</option>
+				<option value="Kristen">Kristen</option>
+				<option value="Katolik">Katolik</option>
+				<option value="Hindu">Hindu</option>
+				<option value="Buddha">Buddha</option>
+				<option value="Konghuchu">Konghuchu</option>
+			</select>
 		</div>
 		<div class="form-group col-md-6">
 			<label th:for="${datadiri.kewarganegaraan}"> Kewarganegaraan
@@ -65,8 +82,12 @@
 		</div>
 		<div class="form-group col-md-6">
 			<label th:for="${datadiri.statusPerkawinan}"> Status
-				Perkawinan </label> <input type="text" th:field="*{statusPerkawinan}"
-				th:errorclass="fieldError" class="form-control" />
+				Perkawinan </label> <select id="inputSP" th:field="*{statusPerkawinan}"
+				th:errorclass="fieldError" class="form-control">
+				<option value="">Choose...</option>
+				<option value="Lajang">Lajang</option>
+				<option value="Menikah">Menikah</option>
+			</select>
 		</div>
 		<!--
 		<div>

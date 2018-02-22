@@ -26,17 +26,17 @@
 </script>
 </head>
 <body>
-	<form action="#" th:action="@{/datadiri/add}" th:object="${datadiri}"
+	<form action="#" th:action="@{/sd/add}" th:object="${skilldiri}"
 		method="post">
-		<div class="form-group col-md-6">
-			<label th:for="${datadiri.namaLengkap}"> Nama Lengkap </label> <input
-				type="text" th:field="*{namaLengkap}" th:errorclass="fieldError"
+				<div class="form-group col-md-6">
+			<label th:for="${skilldiri.datadiri}"> Nama Lengkap </label> <input
+				type="text" th:field="*{datadiri.namaLengkap}" th:errorclass="fieldError"
 				class="form-control" />
 		</div>
 		<div class="form-group col-md-6">
 			<p>
-				<label th:for="${datadiri.umur}"> Umur </label> <input type="text"
-					th:field="*{umur}" th:errorclass="fieldError" class="form-control"
+				<label th:for="${skilldiri.datadiri}"> Umur </label> <input type="text"
+					th:field="*{datadiri.umur}" th:errorclass="fieldError" class="form-control"
 					id="spinner1" name="value" />
 			</p>
 		</div>
@@ -46,8 +46,8 @@
 				th:field="*{tempatLahir}" th:errorclass="fieldError" class="form-control"  />
 		</div>-->
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.gender}"> Jenis Kelamin </label> <select
-				id="inputGender" th:field="*{gender}" th:errorclass="fieldError"
+			<label th:for="${skilldiri.datadiri}"> Jenis Kelamin </label> <select
+				id="inputGender" th:field="*{datadiri.gender}" th:errorclass="fieldError"
 				class="form-control">
 				<option value="">Choose...</option>
 				<option value="L">Laki-laki</option>
@@ -55,8 +55,8 @@
 			</select>
 		</div>
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.agama}"> Agama </label> <select
-				id="inputAgama" th:field="*{agama}" th:errorclass="fieldError"
+			<label th:for="${skilldiri.datadiri}"> Agama </label> <select
+				id="inputAgama" th:field="*{datadiri.agama}" th:errorclass="fieldError"
 				class="form-control">
 				<option value="">Choose...</option>
 				<option value="Islam">Islam</option>
@@ -68,60 +68,31 @@
 			</select>
 		</div>
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.kewarganegaraan}"> Kewarganegaraan
-			</label> <input type="text" th:field="*{kewarganegaraan}"
+			<label th:for="${skilldiri.datadiri}"> Kewarganegaraan
+			</label> <input type="text" th:field="*{datadiri.kewarganegaraan}"
 				th:errorclass="fieldError" class="form-control" />
 		</div>
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.statusPerkawinan}"> Status
-				Perkawinan </label> <select id="inputSP" th:field="*{statusPerkawinan}"
+			<label th:for="${skilldiri.datadiri}"> Status
+				Perkawinan </label> <select id="inputSP" th:field="*{datadiri.statusPerkawinan}"
 				th:errorclass="fieldError" class="form-control">
 				<option value="">Choose...</option>
 				<option value="Lajang">Lajang</option>
 				<option value="Menikah">Menikah</option>
 			</select>
 		</div>
-<!--
 		<div class="form-group col-md-6">
-			<label th:for="${datadiri.skilldiriList.skillId"> Skill</label> 
-			<select th:field="*{skilldiriList.skillId}" 
-			id="inputSP" class="form-control">
+			<label th:for="${skilldiri.skilldiriPK}"> Skill</label> <select
+				id="inputSP" th:field="*{skilldiriPK.skillId}"
+				th:errorclass="fieldError" class="form-control">
 				<div th:each="s : ${getSkill}">
-					<option value="">Choose...</option>
+					<option value="">Choose..</option>
 					<option th:value="${s.skillId}" th:text="${s.namaSkill}"></option>
 				</div>
 			</select>
 		</div>
-		 
 		<div>
-			<label th:for="${datadiri.tanggalLahir}"> Tanggal Lahir </label> <input type="text"
-				th:field="*{tanggalLahir}" th:errorclass="fieldError" />
-		</div>
-		
-		<div>
-			<label th:for="${datadiri.tinggi}"> Tinggi Badan </label> <input type="text"
-				th:field="*{tinggi}" th:errorclass="fieldError" />
-		</div>
-		<div>
-			<label th:for="${datadiri.berat}"> Berat Badan </label> <input type="text"
-				th:field="*{berat}" th:errorclass="fieldError" />
-		</div>
-		<div>
-			<label th:for="${datadiri.alamat}"> Alamat </label> <input type="text"
-				th:field="*{alamat}" th:errorclass="fieldError" />
-		</div>
-		<div>
-			<label th:for="${datadiri.foto}"> Foto </label> <input type="text"
-				th:field="*{foto}" th:errorclass="fieldError" />
-		</div>
-		<div>
-			<label th:for="${datadiri.profilSingkat}"> Profil Singkat </label> <input type="text"
-				th:field="*{profilSingkat}" th:errorclass="fieldError" />
-		</div>
-		-->
-		<div class="form-group col-md-6">
-			<input type="submit" value="SIMPAN" /> <input type="hidden"
-				th:field="*{isActive}" th:value="0" />
+			<input type="submit" value="SIMPAN" />
 		</div>
 	</form>
 </body>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="http://code.jquery.com/jquery-2.2.4.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+	<form action="#" th:action="@{/datadiri/addPenghargaan}"
+		th:object="${penghargaan}" method="post">
+		<div>
+			<label th:for="${penghargaan.penghargaan}"> Prestasi </label> <input
+				type="text" th:field="*{penghargaan}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('penghargaan')}"
+				th:errors="*{penghargaan}">Prestasi</p>
+		</div>
+		<div>
+			<label th:for="${penghargaan.keterangan}"> Keterangan </label> <input
+				type="text" th:field="*{keterangan}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('keterangan')}"
+				th:errors="*{keterangan}">Keterangan</p>
+		</div>
+		<div class="form-group">
+			<label for="${penghargaan.gambar}">Upload
+				Sertifikat/Penghargaan :</label> <input type="file"
+				class="form-control-file" th:field="*{gambar}"
+				th:errorclass="fieldError" id="exampleFormControlFile1" />
+		</div>
+		<div>
+			<input type="submit" value="SIMPAN" />
+		</div>
+	</form>
+</body>
+</html>

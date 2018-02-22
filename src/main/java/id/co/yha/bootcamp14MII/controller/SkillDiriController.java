@@ -48,9 +48,9 @@ public class SkillDiriController {
 	}
 	
 	@PostMapping("/add")
-	public String add(@Valid Skilldiri sd, @Valid Datadiri dd, BindingResult result) {
+	public String add(@Valid Skilldiri sd, BindingResult result) {
 		
-		if(!result.hasErrors() && skilldiriDAO.addSkilldiri(sd,dd) ) {
+		if(!result.hasErrors() && skilldiriDAO.addSkilldiri(sd)) {
 			return "redirect:/sd/index";
 		}
 		else {

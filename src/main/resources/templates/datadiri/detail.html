@@ -5,61 +5,65 @@
 <title>Insert title here</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	crossorigin="anonymous" />
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
 
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
-<script src="http://code.jquery.com/jquery-2.2.4.js"
-	integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-	crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-2.2.4.js"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-	crossorigin="anonymous"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-	crossorigin="anonymous"></script>
-
-<script
-	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#accordion").accordion();
+		var spinner1 = $("#spinner1").spinner();
+		var spinner2 = $("#spinner2").spinner();
+		var spinner3 = $("#spinner3").spinner();
+	});
+</script>
 </head>
 <body>
-	<div th:each="dd : ${objekDatadiri}">
-		<div class="form-group col-md-6">
-			Nama			: <p th:text="${dd.namaLengkap}" class="form-control"></p>
-		</div>
-		<div class="form-group col-md-6">
-			Umur			:<p th:text="${dd.umur}" class="form-control"></p>
-		</div>
-		<!-- <div class="form-group col-md-6">
+	<div id="accordion" th:each="dd : ${objekDatadiri}">
+		<h3>Data Diri</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						Nama :
+						<p th:text="${dd.namaLengkap}" class="form-control"></p>
+					</div>
+					<div class="form-group col-md-6">
+						Umur :
+						<p th:text="${dd.umur}" class="form-control"></p>
+					</div>
+					<!-- <div class="form-group col-md-6">
 			Tempat Lahir :<p th:text="${dd.tempatLahir}" class="form-control"></p>
 		</div>
 		<div class="form-group col-md-6">
 			Tanggal Lahir :<p th:text="${dd.tanggalLahir}" class="form-control"></p>
 		</div> -->
-		<div class="form-group col-md-6">
-			Jenis Kelamin	:<p th:text="${dd.gender}" class="form-control"></p>
-		</div>
-		<div class="form-group col-md-6">
-			Agama			:<p th:text="${dd.agama}" class="form-control"></p>
-		</div>
-		<div class="form-group col-md-6">
-			Kewarganegaraan	:<p th:text="${dd.kewarganegaraan}" class="form-control"></p>
-		</div>
-		<div class="form-group col-md-6">
-			Status Perkawinan	:<p th:text="${dd.statusPerkawinan}" class="form-control"></p>
-		</div>
-		<!-- <div class="form-group col-md-6">
+					<div class="form-group col-md-6">
+						Jenis Kelamin :
+						<p th:text="${dd.gender}" class="form-control"></p>
+					</div>
+					<div class="form-group col-md-6">
+						Agama :
+						<p th:text="${dd.agama}" class="form-control"></p>
+					</div>
+					<div class="form-group col-md-6">
+						Kewarganegaraan :
+						<p th:text="${dd.kewarganegaraan}" class="form-control"></p>
+					</div>
+					<div class="form-group col-md-6">
+						Status Perkawinan :
+						<p th:text="${dd.statusPerkawinan}" class="form-control"></p>
+					</div>
+					<!-- <div class="form-group col-md-6">
 			Tinggi	:<p th:text="${dd.tinggi}" class="form-control"></p>
 		</div>
 		<div class="form-group col-md-6">
@@ -74,12 +78,106 @@
 		<div class="form-group col-md-6">
 			<p th:text="${dd.profilSingkat}" class="form-control"></p>
 		</div> -->
-		<div class="form-group col-md-6" th:each="p : ${dd.pendidikanList}">
-			Nama Sekolah	:<p th:text="${p.namaSekolah}" class="form-control"></p>
+				</div>
+			</form>
 		</div>
-		<div class="form-group col-md-6" th:each="p : ${dd.skilldiriList}">
-			Skill			:<p th:text="${p.skill.namaSkill}" class="form-control"></p>
+		<h3>Pendidikan</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6" th:each="p : ${dd.pendidikanList}">
+						Nama Sekolah :
+						<p th:text="${p.namaSekolah}" class="form-control"></p>
+						Jurusan :
+						<p th:text="${p.jurusan}" class="form-control"></p>
+						Kota :
+						<p th:text="${p.kota}" class="form-control"></p>
+						Tahun Mulai :
+						<p th:text="${p.tahunMulai}" class="form-control"></p>
+						Tahun Selesai :
+						<p th:text="${p.tahunSelesai}" class="form-control"></p>
+						IPK :
+						<p th:text="${p.ipk}" class="form-control"></p>
+					</div>
+				</div>
+			</form>
 		</div>
+		<h3>Skill(s)</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6" th:each="p : ${dd.skilldiriList}">
+						<div class="form-group col-md-8">
+							Skill :
+							<p th:text="${p.skill.namaSkill}" class="form-control"></p>
+							Keterangan :
+							<p th:text="${p.skill.keterangan}" class="form-control"></p>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<h3>Pengalaman Organisasi</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6" th:each="p : ${dd.organisasiList}">
+						Nama Organisasi :
+						<p th:text="${p.namaOrganisasi}" class="form-control"></p>
+						Jabatan :
+						<p th:text="${p.jabatan}" class="form-control"></p>
+						Kota :
+						<p th:text="${p.kota}" class="form-control"></p>
+						Tahun Mulai :
+						<p th:text="${p.tahunMulai}" class="form-control"></p>
+						Tahun Selesai :
+						<p th:text="${p.tahunSelesai}" class="form-control"></p>
+						Keterangan :
+						<p th:text="${p.keterangan}" class="form-control"></p>
+					</div>
+				</div>
+			</form>
+		</div>
+		<h3>Pengalaman Kerja</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6" th:each="p : ${dd.pekerjaanList}">
+						Nama Perusahaan :
+						<p th:text="${p.namaPerusahaan}" class="form-control"></p>
+						Jabatan :
+						<p th:text="${p.jabatan}" class="form-control"></p>
+						Kota :
+						<p th:text="${p.kota}" class="form-control"></p>
+						Tahun Mulai :
+						<p th:text="${p.tahunMulai}" class="form-control"></p>
+						Tahun Selesai :
+						<p th:text="${p.tahunSelesai}" class="form-control"></p>
+						Keterangan :
+						<p th:text="${p.keterangan}" class="form-control"></p>
+					</div>
+				</div>
+			</form>
+		</div>
+		<h3>Prestasi</h3>
+		<div>
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6"
+						th:each="p : ${dd.penghargaanList}">
+						Nama Penghargaan :
+						<p th:text="${p.namaPenghargaan}" class="form-control"></p>
+						Keterangan :
+						<p th:text="${p.keterangan}" class="form-control"></p>
+					</div>
+					<a th:href="@{'/datadiri/addPekerjaan/' + ${dd.datadiriId}}"
+				class="slass1">Tambah data pekerjaan</a>
+				</div>
+			</form>
+		</div>
+		
+			
+		
 	</div>
 </body>
 </html>

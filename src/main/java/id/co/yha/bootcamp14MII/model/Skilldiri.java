@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Skilldiri.findAll", query = "SELECT s FROM Skilldiri s")
-    , @NamedQuery(name = "Skilldiri.findByDatadiriId", query = "SELECT s FROM Skilldiri s WHERE s.skilldiriPK.datadiriId = :datadiriId")
+    , @NamedQuery(name = "Skilldiri.findById", query = "SELECT s FROM Skilldiri s WHERE s.skilldiriPK.id = :id")
     , @NamedQuery(name = "Skilldiri.findBySkillId", query = "SELECT s FROM Skilldiri s WHERE s.skilldiriPK.skillId = :skillId")
-    , @NamedQuery(name = "Skilldiri.findByNama", query = "SELECT s FROM Skilldiri s WHERE s.nama = :nama")
+    , @NamedQuery(name = "Skilldiri.findByKeterangan", query = "SELECT s FROM Skilldiri s WHERE s.keterangan = :keterangan")
     , @NamedQuery(name = "Skilldiri.findByIsActive", query = "SELECT s FROM Skilldiri s WHERE s.isActive = :isActive")})
 public class Skilldiri implements Serializable {
 
@@ -37,14 +37,14 @@ public class Skilldiri implements Serializable {
     @EmbeddedId
     protected SkilldiriPK skilldiriPK;
     @Size(max = 45)
-    @Column(name = "NAMA")
-    private String nama;
+    @Column(name = "KETERANGAN")
+    private String keterangan;
     @Column(name = "IS_ACTIVE")
     private Integer isActive;
-    @JoinColumn(name = "DATADIRI_ID", referencedColumnName = "SKILL_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "ID", referencedColumnName = "SKILL_ID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Skill skill;
-    @JoinColumn(name = "SKILL_ID", referencedColumnName = "DATADIRI_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Datadiri datadiri;
 
@@ -55,8 +55,8 @@ public class Skilldiri implements Serializable {
         this.skilldiriPK = skilldiriPK;
     }
 
-    public Skilldiri(int datadiriId, int skillId) {
-        this.skilldiriPK = new SkilldiriPK(datadiriId, skillId);
+    public Skilldiri(int id, int skillId) {
+        this.skilldiriPK = new SkilldiriPK(id, skillId);
     }
 
     public SkilldiriPK getSkilldiriPK() {
@@ -67,12 +67,12 @@ public class Skilldiri implements Serializable {
         this.skilldiriPK = skilldiriPK;
     }
 
-    public String getNama() {
-        return nama;
+    public String getKeterangan() {
+        return keterangan;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 
     public Integer getIsActive() {

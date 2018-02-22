@@ -7,17 +7,18 @@ package id.co.yha.bootcamp14MII.model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -30,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Akun.findAll", query = "SELECT a FROM Akun a")
-    , @NamedQuery(name = "Akun.findByAkunId", query = "SELECT a FROM Akun a WHERE a.akunId = :akunId")
+    , @NamedQuery(name = "Akun.findById", query = "SELECT a FROM Akun a WHERE a.id = :id")
     , @NamedQuery(name = "Akun.findByUsername", query = "SELECT a FROM Akun a WHERE a.username = :username")
     , @NamedQuery(name = "Akun.findByEmail", query = "SELECT a FROM Akun a WHERE a.email = :email")
     , @NamedQuery(name = "Akun.findByPw", query = "SELECT a FROM Akun a WHERE a.pw = :pw")
@@ -41,9 +42,11 @@ public class Akun implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "AKUN_ID")
-    private Integer akunId;
-    @Size(max = 25)
+    @Column(name = "ID")
+    private Integer id;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 25)
     @Column(name = "USERNAME")
     private String username;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -55,23 +58,27 @@ public class Akun implements Serializable {
     private String pw;
     @Column(name = "IS_ACTIVE")
     private Integer isActive;
-    @JoinColumn(name = "DATADIRI_ID", referencedColumnName = "DATADIRI_ID")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Datadiri datadiriId;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "akun", fetch = FetchType.LAZY)
+    private Datadiri datadiri;
 
     public Akun() {
     }
 
-    public Akun(Integer akunId) {
-        this.akunId = akunId;
+    public Akun(Integer id) {
+        this.id = id;
     }
 
-    public Integer getAkunId() {
-        return akunId;
+    public Akun(Integer id, String username) {
+        this.id = id;
+        this.username = username;
     }
 
-    public void setAkunId(Integer akunId) {
-        this.akunId = akunId;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -106,18 +113,18 @@ public class Akun implements Serializable {
         this.isActive = isActive;
     }
 
-    public Datadiri getDatadiriId() {
-        return datadiriId;
+    public Datadiri getDatadiri() {
+        return datadiri;
     }
 
-    public void setDatadiriId(Datadiri datadiriId) {
-        this.datadiriId = datadiriId;
+    public void setDatadiri(Datadiri datadiri) {
+        this.datadiri = datadiri;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (akunId != null ? akunId.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -128,7 +135,7 @@ public class Akun implements Serializable {
             return false;
         }
         Akun other = (Akun) object;
-        if ((this.akunId == null && other.akunId != null) || (this.akunId != null && !this.akunId.equals(other.akunId))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -136,7 +143,7 @@ public class Akun implements Serializable {
 
     @Override
     public String toString() {
-        return "id.co.yha.bootcamp14MII.model.Akun[ akunId=" + akunId + " ]";
+        return "id.co.yha.bootcamp14MII.model.Akun[ id=" + id + " ]";
     }
     
 }
