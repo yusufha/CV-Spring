@@ -37,6 +37,11 @@
 	<form action="#" th:action="@{/datadiri/addPendidikan}"
 		th:object="${pendidikan}" method="post">
 		<div>
+		 <input type="hidden" th:field="*{id.id}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('id')}"
+				th:errors="*{id}">ID</p>
+		</div>
+		<div>
 			<label th:for="${pendidikan.namaSekolah}"> Nama Sekolah </label> <input
 				type="text" th:field="*{namaSekolah}" th:errorclass="fieldError" />
 			<p th:if="${#fields.hasErrors('namaSekolah')}"

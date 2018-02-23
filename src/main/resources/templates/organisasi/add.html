@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1"/>
+<meta charset="ISO-8859-1" />
 <title>Insert title here</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -20,11 +20,18 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-<form action="#" th:action="@{/datadiri/addOrganisasi}"
+	<form action="#" th:action="@{/datadiri/addOrganisasi}"
 		th:object="${organisasi}" method="post">
 		<div>
-			<label th:for="${organisasi.namaOrganisasi}"> Nama Organisasi </label> <input
-				type="text" th:field="*{namaOrganisasi}" th:errorclass="fieldError" />
+			<input
+				type="hidden" th:field="*{id.id}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('id')}"
+				th:errors="*{id}">ID</p>
+		</div>
+		<div>
+			<label th:for="${organisasi.namaOrganisasi}"> Nama Organisasi
+			</label> <input type="text" th:field="*{namaOrganisasi}"
+				th:errorclass="fieldError" />
 			<p th:if="${#fields.hasErrors('namaOrganisasi')}"
 				th:errors="*{namaOrganisasi}">Nama Organisasi</p>
 		</div>
@@ -53,12 +60,14 @@
 				th:errors="*{tahunSelesai}">Tahun Selesai</p>
 		</div>
 		<div>
-			<label th:for="${organisasi.keterangan}"> Keterangan </label> <input type="text"
-				th:field="*{keterangan}" th:errorclass="fieldError" />
-			<p th:if="${#fields.hasErrors('keterangan')}" th:errors="*{keterangan}">Keterangan</p>
+			<label th:for="${organisasi.keterangan}"> Keterangan </label> <input
+				type="text" th:field="*{keterangan}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('keterangan')}"
+				th:errors="*{keterangan}">Keterangan</p>
 		</div>
 		<div>
 			<input type="submit" value="SIMPAN" />
+			
 		</div>
 	</form>
 </body>

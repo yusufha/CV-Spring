@@ -22,13 +22,13 @@ public class PenghargaanDAO {
 	
 	public List<Penghargaan> getAllPenghargaan(){
 		return factory.createEntityManager()
-				.createQuery("from Penghargaan")
+				.createQuery("from Penghargaan where isActive = 1")
 				.getResultList();
 	}
 
 	public Penghargaan getPenghargaan(int id) {
 		return (Penghargaan) factory.createEntityManager()
-				.createQuery("from Penghargaan where datadiriId =" +id )
+				.createQuery("from Penghargaan where penghargaanId =" +id )
 				.getSingleResult();
 	}
 	
@@ -39,6 +39,7 @@ public class PenghargaanDAO {
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
+			penghargaan.setIsActive(1);
 			eManager.persist(penghargaan);
 			transaksi.commit();
 		} catch(Exception e) {

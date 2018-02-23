@@ -23,6 +23,11 @@
 	<form action="#" th:action="@{/datadiri/addPenghargaan}"
 		th:object="${penghargaan}" method="post">
 		<div>
+		 <input type="hidden" th:field="*{id.id}" th:errorclass="fieldError" />
+			<p th:if="${#fields.hasErrors('id')}"
+				th:errors="*{id}">ID</p>
+		</div>
+		<div>
 			<label th:for="${penghargaan.penghargaan}"> Prestasi </label> <input
 				type="text" th:field="*{penghargaan}" th:errorclass="fieldError" />
 			<p th:if="${#fields.hasErrors('penghargaan')}"

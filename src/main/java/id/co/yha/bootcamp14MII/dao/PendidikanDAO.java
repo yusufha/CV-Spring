@@ -40,6 +40,7 @@ public class PendidikanDAO {
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
+			pend.setIsActive(1);
 			eManager.persist(pend);
 			transaksi.commit();
 		} catch(Exception e) {

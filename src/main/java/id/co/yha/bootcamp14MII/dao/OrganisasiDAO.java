@@ -41,6 +41,7 @@ public class OrganisasiDAO {
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
+			org.setIsActive(1);
 			eManager.persist(org);
 			transaksi.commit();
 		} catch(Exception e) {

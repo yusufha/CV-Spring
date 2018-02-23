@@ -41,7 +41,7 @@ public class Skilldiri implements Serializable {
     private String keterangan;
     @Column(name = "IS_ACTIVE")
     private Integer isActive;
-    @JoinColumn(name = "ID", referencedColumnName = "SKILL_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "SKILL_ID", referencedColumnName = "SKILL_ID", insertable = false, updatable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Skill skill;
     @JoinColumn(name = "ID", referencedColumnName = "ID", insertable = false, updatable = false)

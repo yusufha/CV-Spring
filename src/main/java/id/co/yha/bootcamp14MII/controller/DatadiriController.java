@@ -18,6 +18,7 @@ import id.co.yha.bootcamp14MII.dao.PendidikanDAO;
 import id.co.yha.bootcamp14MII.dao.PenghargaanDAO;
 import id.co.yha.bootcamp14MII.dao.SkillDAO;
 import id.co.yha.bootcamp14MII.dao.SkillDiriDAO;
+import id.co.yha.bootcamp14MII.dao.SkillDiriPKDAO;
 import id.co.yha.bootcamp14MII.model.Datadiri;
 import id.co.yha.bootcamp14MII.model.Organisasi;
 import id.co.yha.bootcamp14MII.model.Pekerjaan;
@@ -25,6 +26,7 @@ import id.co.yha.bootcamp14MII.model.Pendidikan;
 import id.co.yha.bootcamp14MII.model.Penghargaan;
 import id.co.yha.bootcamp14MII.model.Skill;
 import id.co.yha.bootcamp14MII.model.Skilldiri;
+import id.co.yha.bootcamp14MII.model.SkilldiriPK;
 
 @Controller
 @RequestMapping("datadiri")
@@ -41,9 +43,9 @@ public class DatadiriController {
 	@Autowired
 	private PenghargaanDAO penghargaanDAO;
 	@Autowired
-	private SkillDAO skillDAO;
-	@Autowired
 	private SkillDiriDAO skilldiriDAO;
+	@Autowired
+	private SkillDiriPKDAO skilldiriDAOPK;
 	 
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -60,7 +62,7 @@ public class DatadiriController {
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("datadiri", new Datadiri());
-		model.addAttribute("getSkill", skillDAO.getAllSkill());
+//		model.addAttribute("getSkill", skillDAO.getAllSkill());
 		return "datadiri/add";
 	}
 	
@@ -93,9 +95,11 @@ public class DatadiriController {
 	/**
 	 * Pendidikan
 	 */
-	@GetMapping("/addPendidikan")
-	public String addPendidikan(Model model) {
-		model.addAttribute("pendidikan", new Pendidikan());
+	@GetMapping("/addPendidikan/{id}")
+	public String addPendidikan(Model model, @PathVariable("id") int id) {
+		Pendidikan pend = new Pendidikan();
+		pend.setId(datadiriDAO.getDatadiri(id));
+		model.addAttribute("pendidikan", pend);
 		return "pendidikan/add";
 	}
 	
@@ -125,12 +129,51 @@ public class DatadiriController {
 		}
 	}
 	
+//	/**
+//	 * Skill
+//	 */
+//	@GetMapping("/addSkill/{id}")
+//	public String addSkill(Model model, @PathVariable("id") int id) {
+//		SkilldiriPK sd = new SkilldiriPK();
+//		sd.setId(datadiriDAO.getDatadiri(id));
+//		model.addAttribute("sd", sd);
+//		return "sd/add";
+//	}
+//	
+//	@PostMapping("/addSkill")
+//	public String addSkill(@Valid SkilldiriPK skill, BindingResult result) {
+//		if(!result.hasErrors() && skilldiriPKDAO.addSkilldiriPK(skill)) {
+//			return "redirect:/pendidikan/index";
+//		}
+//		else {
+//			return "pendidikan/add";
+//		}
+//	}
+//	
+//	@GetMapping("/editSkill/{id}")
+//	public String editFormSkill(Model model, @PathVariable("id") int id) {
+//		model.addAttribute("skill", pendidikanDAO.getPendidikan(id));
+//		return "pendidikan/edit";
+//	}
+//	
+//	@PostMapping("/editSkill")
+//	public String editSkill(@Valid SkilldiriPK sdpk, BindingResult result) {
+//		if(!result.hasErrors() && skilldiriPKDAO.editPendidikan(pendidikan)) {
+//			return "redirect:/pendidikan/index";
+//		}
+//		else {
+//			return "pendidikan/edit/";
+//		}
+//	}
+	
 	/**
 	 * Pekerjaan
 	 */
-	@GetMapping("/addPekerjaan/{datadiriId}")
-	public String addPekerjaan(Model model, @PathVariable("datadiriId") int id) {
-		model.addAttribute("pekerjaan", new Pekerjaan());
+	@GetMapping("/addPekerjaan/{id}")
+	public String addPekerjaan(Model model, @PathVariable("id") int id) {
+		Pekerjaan kerja = new Pekerjaan();
+		kerja.setId(datadiriDAO.getDatadiri(id));
+		model.addAttribute("pekerjaan", kerja);
 		return "pekerjaan/add";
 	}
 	
@@ -163,14 +206,18 @@ public class DatadiriController {
 	/**
 	 * Organisasi
 	 */
-	@GetMapping("/addOrganisasi")
-	public String addOrganisasi(Model model) {
-		model.addAttribute("organisasi", new Organisasi());
+	@GetMapping("/addOrganisasi/{id}")
+	public String addOrganisasi(Model model, @PathVariable("id") int id) {
+	Organisasi org = new Organisasi();
+	org.setId(datadiriDAO.getDatadiri(id));
+		model.addAttribute("organisasi", org);
 		return "organisasi/add";
 	}
 	
 	@PostMapping("/addOrganisasi")
 	public String addOrganisasi(@Valid Organisasi organisasi, BindingResult result) {
+//		System.out.println("2 " + organisasi.getNamaOrganisasi());
+//		organisasi.setId(datadiriDAO.getDatadiri(id));
 		if(!result.hasErrors() && organisasiDAO.addOrganisasi(organisasi)) {
 			return "redirect:/datadiri/index";
 		}
@@ -198,9 +245,11 @@ public class DatadiriController {
 	/**
 	 * Penghargaan
 	 */
-	@GetMapping("/addPenghargaan")
-	public String addPenghargaan(Model model) {
-		model.addAttribute("penghargaan", new Penghargaan());
+	@GetMapping("/addPenghargaan/{id}")
+	public String addPenghargaan(Model model, @PathVariable("id") int id) {
+		Penghargaan penghargaan = new Penghargaan();
+		penghargaan.setId(datadiriDAO.getDatadiri(id));
+		model.addAttribute("penghargaan", penghargaan);
 		return "penghargaan/add";
 	}
 	

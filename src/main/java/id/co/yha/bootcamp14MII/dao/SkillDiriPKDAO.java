@@ -10,40 +10,42 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import id.co.yha.bootcamp14MII.model.Pekerjaan;
+
+import id.co.yha.bootcamp14MII.model.Skilldiri;
+import id.co.yha.bootcamp14MII.model.SkilldiriPK;
 
 @Service
-public class PekerjaanDAO {
-	
+public class SkillDiriPKDAO {
 	private static final Logger log = 
-			LoggerFactory.getLogger(AkunDAO.class);
-	
+			LoggerFactory.getLogger(SkillDiriPKDAO.class);
+
 	@Autowired
 	private EntityManagerFactory factory;
 	
-	public List<Pekerjaan> getAllPekerjaan(){
+	public List<SkilldiriPK> getAllSDPK(){
 		return factory.createEntityManager()
-				.createQuery("from Organisasi")
+				.createQuery("from SkilldiriPK")
 				.getResultList();
 	}
 
-	public Pekerjaan getPekerjaan(int id) {
-		return (Pekerjaan) factory.createEntityManager()
-				.createQuery("from Pekerjaan where datadiriId =" +id )
+	public SkilldiriPK getSkilldiriPK(int id) {
+		return (SkilldiriPK) factory.createEntityManager()
+				.createQuery("from SkilldiriPK where id =" +id )
 				.getSingleResult();
 	}
 	
-	public boolean addPekerjaan(Pekerjaan kerja) {
+	public boolean addSkilldiriPK(SkilldiriPK sdPK) {
 		EntityManager eManager = factory.createEntityManager();
 		EntityTransaction transaksi = null;
 		boolean isSuccess = true;
 		try {
+			
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
-			kerja.setIsActive(1);
-			eManager.persist(kerja);
+			eManager.persist(sdPK);
 			transaksi.commit();
 		} catch(Exception e) {
+			e.printStackTrace();
 			transaksi.rollback();
 			isSuccess = false;
 			log.error("DAO Error", e.getMessage());
@@ -51,22 +53,17 @@ public class PekerjaanDAO {
 		return isSuccess;
 	}
 	
-	public boolean editPekerjaan(Pekerjaan updatedKerja) {
+	public boolean editSkilldiriPK(SkilldiriPK updatedSDPK) {
 		EntityManager eManager = factory.createEntityManager();
 		EntityTransaction transaksi = null;
 		boolean isSuccess = true;
 		try {
 			transaksi = eManager.getTransaction();
 			transaksi.begin();
-			Pekerjaan excistingKerja = 
-					(Pekerjaan) eManager.find(Pekerjaan.class, 
-							updatedKerja.getPekerjaanId());
-			excistingKerja.setNamaPerusahaan(updatedKerja.getNamaPerusahaan());
-			excistingKerja.setJabatan(updatedKerja.getJabatan());
-			excistingKerja.setKota(updatedKerja.getKota());
-			excistingKerja.setTahunMulai(updatedKerja.getTahunMulai());
-			excistingKerja.setTahunSelesai(updatedKerja.getTahunSelesai());
-			excistingKerja.setKeterangan(updatedKerja.getKeterangan());
+			SkilldiriPK excistingSDPK = 
+					(SkilldiriPK) eManager.find(SkilldiriPK.class, 
+							updatedSDPK.getId());
+			excistingSDPK.setSkillId(updatedSDPK.getSkillId());
 			transaksi.commit();
 		} catch(Exception e) {
 			transaksi.rollback();

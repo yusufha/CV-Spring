@@ -85,6 +85,8 @@
 		<div>
 			<form>
 				<div class="form-row">
+				<a th:href="@{'/datadiri/addPendidikan/' + ${dd.id}}"
+				class="slass1">Tambah data pendidikan</a>
 					<div class="form-group col-md-6" th:each="p : ${dd.pendidikanList}">
 						Nama Sekolah :
 						<p th:text="${p.namaSekolah}" class="form-control"></p>
@@ -106,14 +108,14 @@
 		<div>
 			<form>
 				<div class="form-row">
-					<div class="form-group col-md-6" th:each="p : ${dd.skilldiriList}">
+				<!-- <div class="form-group col-md-6" th:each="p : ${dd.skilldiriList}">
 						<div class="form-group col-md-8">
 							Skill :
 							<p th:text="${p.skill.namaSkill}" class="form-control"></p>
 							Keterangan :
 							<p th:text="${p.skill.keterangan}" class="form-control"></p>
-						</div>
-					</div>
+						</div> 
+					</div> -->
 				</div>
 			</form>
 		</div>
@@ -121,6 +123,8 @@
 		<div>
 			<form>
 				<div class="form-row">
+				<a th:href="@{'/datadiri/addOrganisasi/' + ${dd.id}}"
+				class="slass1">Tambah data organisasi</a>
 					<div class="form-group col-md-6" th:each="p : ${dd.organisasiList}">
 						Nama Organisasi :
 						<p th:text="${p.namaOrganisasi}" class="form-control"></p>
@@ -142,6 +146,8 @@
 		<div>
 			<form>
 				<div class="form-row">
+				<a th:href="@{'/datadiri/addPekerjaan/' + ${dd.id}}"
+				class="slass1">Tambah data pekerjaan</a>
 					<div class="form-group col-md-6" th:each="p : ${dd.pekerjaanList}">
 						Nama Perusahaan :
 						<p th:text="${p.namaPerusahaan}" class="form-control"></p>
@@ -163,6 +169,8 @@
 		<div>
 			<form>
 				<div class="form-row">
+				<a th:href="@{'/datadiri/addPenghargaan/' + ${dd.id}}"
+				class="slass1">Tambah data prestasi</a>
 					<div class="form-group col-md-6"
 						th:each="p : ${dd.penghargaanList}">
 						Nama Penghargaan :
@@ -170,14 +178,9 @@
 						Keterangan :
 						<p th:text="${p.keterangan}" class="form-control"></p>
 					</div>
-					<a th:href="@{'/datadiri/addPekerjaan/' + ${dd.datadiriId}}"
-				class="slass1">Tambah data pekerjaan</a>
 				</div>
 			</form>
 		</div>
-		
-			
-		
 	</div>
 </body>
 </html>
