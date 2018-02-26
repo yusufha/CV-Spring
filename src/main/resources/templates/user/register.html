@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="http://code.jquery.com/jquery-2.2.4.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#accordion").accordion();
+		var spinner1 = $("#spinner1").spinner();
+	});
+</script>
+</head>
+<body>
+	<form action="#" th:action="@{/datadiri/add}" th:object="${datadiri}"
+		method="post">
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.namaLengkap}"> Nama Lengkap </label> <input
+				type="text" th:field="*{namaLengkap}" th:errorclass="fieldError"
+				class="form-control" />
+		</div>
+		<div class="form-group col-md-6">
+			<p>
+				<label th:for="${datadiri.umur}"> Umur </label> <input type="text"
+					th:field="*{umur}" th:errorclass="fieldError" class="form-control"
+					id="spinner1" name="value" />
+			</p>
+		</div>
+
+		<!-- <div>
+			<label th:for="${datadiri.tempatLahir}"> Tempat Lahir </label> <input type="text"
+				th:field="*{tempatLahir}" th:errorclass="fieldError" class="form-control"  />
+		</div>-->
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.gender}"> Jenis Kelamin </label> <select
+				id="inputGender" th:field="*{gender}" th:errorclass="fieldError"
+				class="form-control">
+				<option value="">Choose...</option>
+				<option value="L">Laki-laki</option>
+				<option value="P">Perempuan</option>
+			</select>
+		</div>
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.agama}"> Agama </label> <select
+				id="inputAgama" th:field="*{agama}" th:errorclass="fieldError"
+				class="form-control">
+				<option value="">Choose...</option>
+				<option value="Islam">Islam</option>
+				<option value="Kristen">Kristen</option>
+				<option value="Katolik">Katolik</option>
+				<option value="Hindu">Hindu</option>
+				<option value="Buddha">Buddha</option>
+				<option value="Konghuchu">Konghuchu</option>
+			</select>
+		</div>
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.kewarganegaraan}"> Kewarganegaraan
+			</label> <input type="text" th:field="*{kewarganegaraan}"
+				th:errorclass="fieldError" class="form-control" />
+		</div>
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.statusPerkawinan}"> Status
+				Perkawinan </label> <select id="inputSP" th:field="*{statusPerkawinan}"
+				th:errorclass="fieldError" class="form-control">
+				<option value="">Choose...</option>
+				<option value="Lajang">Lajang</option>
+				<option value="Menikah">Menikah</option>
+			</select>
+		</div>
+<!--
+		<div class="form-group col-md-6">
+			<label th:for="${datadiri.skilldiriList.skillId"> Skill</label> 
+			<select th:field="*{skilldiriList.skillId}" 
+			id="inputSP" class="form-control">
+				<div th:each="s : ${getSkill}">
+					<option value="">Choose...</option>
+					<option th:value="${s.skillId}" th:text="${s.namaSkill}"></option>
+				</div>
+			</select>
+		</div>
+		 
+		<div>
+			<label th:for="${datadiri.tanggalLahir}"> Tanggal Lahir </label> <input type="text"
+				th:field="*{tanggalLahir}" th:errorclass="fieldError" />
+		</div>
+		
+		<div>
+			<label th:for="${datadiri.tinggi}"> Tinggi Badan </label> <input type="text"
+				th:field="*{tinggi}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.berat}"> Berat Badan </label> <input type="text"
+				th:field="*{berat}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.alamat}"> Alamat </label> <input type="text"
+				th:field="*{alamat}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.foto}"> Foto </label> <input type="text"
+				th:field="*{foto}" th:errorclass="fieldError" />
+		</div>
+		<div>
+			<label th:for="${datadiri.profilSingkat}"> Profil Singkat </label> <input type="text"
+				th:field="*{profilSingkat}" th:errorclass="fieldError" />
+		</div>
+		-->
+		<div class="form-group col-md-6">
+			<input type="submit" value="SIMPAN" /> <input type="hidden"
+				th:field="*{isActive}" th:value="0" />
+		</div>
+	</form>
+</body>
+</html>

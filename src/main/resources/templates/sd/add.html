@@ -18,26 +18,63 @@
 <link rel="stylesheet" href="/resources/demos/style.css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	$(document).ready(function() {
+		var skillName = [];
+		var skillId = [];
+		$.get("/skillName", function(data) {
+			$.each(data, function(index, value) {
+				skillName.push(value);
+			});
+		});
+
+		$.get("/skillId", function(data) {
+			$.each(data, function(index, value) {
+				skillId.push(value);
+			});
+		});
+
+		$("#inputSkill").autocomplete({
+			source : skillName,
+			select : function(event, ui) {
+				var index = skillName.indexOf(ui.item.value);
+				$("#selectskill").val(skillId[index]);
+
+			}
+		});
+	});
+</script>
 
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="#" th:action="@{/sd/add}" th:object="${skilldiri}"
-		method="post">
+	<form action="#" th:action="@{/sd/add}" th:object="${sd}" method="post">
 		<div class="form-group col-md-6">
-			<label th:for="${skilldiri.skilldiriPK}"> Skill</label> <select
+			<input type="text" th:field="*{skilldiriPK.id}"
+				th:errorclass="fieldError" class="form-control"/>
+			<p th:if="${#fields.hasErrors('skilldiriPK.id')}"
+				th:errors="*{skilldiriPK.id}">ID</p>
+		</div>
+		<div class="form-group col-md-6">
+			<label> Skill </label> <input id="inputSkill"
+				type="text" class="form-control" />
+				<input id="selectSkill" type="hidden" th:field="*{skilldiriPK.skillId}"/>
+		</div>
+		<!-- <div class="form-group col-md-6">
+			<label th:for="${sd.skilldiriPK.skillId}"> Skill</label> 
+			<select
 				id="inputSP" th:field="*{skilldiriPK.skillId}"
 				th:errorclass="fieldError" class="form-control">
+				<option value="1">Choose..</option>
 				<div th:each="s : ${getSkill}">
-					<option value="">Choose..</option>
 					<option th:value="${s.skillId}" th:text="${s.namaSkill}"></option>
 				</div>
 			</select>
-		</div>
+		</div> -->
 		<div class="form-group col-md-6">
-			<input type="submit" value="SIMPAN"/> <input
-				type="hidden" th:field="*{skilldiriPK.datadiriId}"
-				th:value="*{skilldiriPK.datadiriId}" />
+			<input type="submit" value="SIMPAN" />
+			<!-- <input type="hidden"
+				th:field="*{skilldiriPK.id}" th:value="*{skilldiriPK.id}" /> -->
 		</div>
 	</form>
 </body>

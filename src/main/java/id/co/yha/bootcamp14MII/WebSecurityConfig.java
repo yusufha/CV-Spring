@@ -43,7 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.createQuery("from Akun where isActive = 1")
 				.getResultList();
 		for (Akun user : listUser) {
-			auth.inMemoryAuthentication().withUser(user.getUsername()).password(user.getPw()).roles("USER");
+			auth.inMemoryAuthentication().withUser(user.getUsername()).password(user.getPw()).roles("USER")
+			.and().withUser("admin").password("admin").roles("ADMIN");
 		}
     }
 }

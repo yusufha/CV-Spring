@@ -74,16 +74,19 @@ footer {
 
 		$(".hapus").click(function() {
 			var idx = $(".hapus").index(this);
-			var id= $(".cas:eq(" + idx + ")").val();
+			var id = $(".cas:eq(" + idx + ")").val();
 			var url = "/deleteDatadiri";
 			var choice = confirm('Do you really want to delete this record?');
 			if (choice == true) {
-				$.get(url, {datadiriId : id}).done(function(){
+				$.get(url, {
+					datadiriId : id
+				}).done(function() {
 					location.reload();
 				});
 			} else {
 				return false;
-			};
+			}
+			;
 		});
 	});
 </script>
@@ -106,23 +109,21 @@ footer {
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>
-							Login</a></li>
+					<h5 th:inline="text">
+						[[${#httpServletRequest.remoteUser}]]!</h5>
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" value="Sign Out" />
+					</form>
+					<!-- <li><a href="/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-	<h1 th:text="${#authentication.name}"></h1>
-	<!--  -->
 	<div>
 		<div class="widget" th="datadiri : ${semuaDatadiri}">
 			<a th:href="@{'/datadiri/add/'}">Add</a>
 		</div>
-		<br />
 		<table>
 			<thead>
 				<tr>
@@ -141,10 +142,11 @@ footer {
 							<li th:text="${s.skill.namaSkill}"></li>
 						</ul>
 					</td>
-					<td><a th:href="@{'/datadiri/detail/' + ${dd.id}}" class="slass1">Detail</a>
-						<a th:href="@{'/datadiri/edit/' + ${dd.id}}" class="class2"> Edit</a> <a
-						href="##" class="hapus"> Hapus</a> <input type="hidden" class="cas"
-						th:value="${dd.id}"/></td>
+					<td><a th:href="@{'/datadiri/detail/' + ${dd.id}}"
+						class="slass1">Detail</a> <a
+						th:href="@{'/datadiri/edit/' + ${dd.id}}" class="class2"> Edit</a>
+						<a href="##" class="hapus"> Hapus</a> <input type="hidden"
+						class="cas" th:value="${dd.id}" /></td>
 				</tr>
 			</tbody>
 		</table>

@@ -43,9 +43,11 @@ public class DatadiriController {
 	@Autowired
 	private PenghargaanDAO penghargaanDAO;
 	@Autowired
+	private SkillDAO skillDAO;
+	@Autowired
 	private SkillDiriDAO skilldiriDAO;
 	@Autowired
-	private SkillDiriPKDAO skilldiriDAOPK;
+	private SkillDiriPKDAO skilldiriPKDAO;
 	 
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -129,26 +131,28 @@ public class DatadiriController {
 		}
 	}
 	
-//	/**
-//	 * Skill
-//	 */
-//	@GetMapping("/addSkill/{id}")
-//	public String addSkill(Model model, @PathVariable("id") int id) {
-//		SkilldiriPK sd = new SkilldiriPK();
-//		sd.setId(datadiriDAO.getDatadiri(id));
-//		model.addAttribute("sd", sd);
-//		return "sd/add";
-//	}
-//	
-//	@PostMapping("/addSkill")
-//	public String addSkill(@Valid SkilldiriPK skill, BindingResult result) {
-//		if(!result.hasErrors() && skilldiriPKDAO.addSkilldiriPK(skill)) {
-//			return "redirect:/pendidikan/index";
-//		}
-//		else {
-//			return "pendidikan/add";
-//		}
-//	}
+	/**
+	 * Skill
+	 */
+	@GetMapping("/addSkill/{id}")
+	public String addSkill(Model model, @PathVariable("id") int id) {
+		Skilldiri sd = new Skilldiri();
+		sd.setSkilldiriPK(new SkilldiriPK());
+		sd.getSkilldiriPK().setId(id);
+		model.addAttribute("sd", sd);
+		model.addAttribute("getSkill", skillDAO.getAllSkill());
+		return "sd/add";
+	}
+	
+	@PostMapping("/addSkill")
+	public String addSkill(@Valid Skilldiri skill, BindingResult result) {
+		if(!result.hasErrors() && skilldiriDAO.addSkilldiri(skill)) {
+			return "redirect:/datadiri/detail/{id}";
+		}
+		else {
+			return "sd/add";
+		}
+	}
 //	
 //	@GetMapping("/editSkill/{id}")
 //	public String editFormSkill(Model model, @PathVariable("id") int id) {

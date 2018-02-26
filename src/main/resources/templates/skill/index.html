@@ -104,8 +104,13 @@ footer {
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-							Login</a></li>
+					<h5 th:inline="text">
+						[[${#httpServletRequest.remoteUser}]]</h5>
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" value="Sign Out" />
+					</form>
+					<!-- <li><a href="/login"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
 				</ul>
 			</div>
 		</div>

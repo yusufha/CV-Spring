@@ -19,81 +19,52 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-	$(function() {
-		$("#accordion").accordion();
-		var spinner1 = $("#spinner1").spinner();
+	$(document).ready(function() {
+		var skillName = [];
+		var skillId = [];
+		$.get("/skillName", function(data) {
+			$.each(data, function(index, value) {
+				skillName.push(value);
+			});
+		});
+
+		$.get("/skillId", function(data) {
+			$.each(data, function(index, value) {
+				skillId.push(value);
+			});
+		});
+
+		$("#inputSkill").autocomplete({
+			source : skillName,
+			select : function(event, ui) {
+				var index = skillName.indexOf(ui.item.value);
+				$("#selectskill").val(skillId[index]);
+
+				var iskill = $("#selectskill").val();
+				var url = "/addSkill";
+				$.get(url, {
+					skill : iskill
+				}).done(function(data) {
+					$("#addSkill").autocomplete({
+						source : data,
+						select : function(event, ui) {
+							$("#selectskill").val(ui.item.value);
+						}
+					});
+				});
+			}
+		});
 	});
 </script>
 </head>
 <body>
-	<form action="#" th:action="@{/sd/add}" th:object="${skilldiri}"
-		method="post">
-				<div class="form-group col-md-6">
-			<label th:for="${skilldiri.datadiri}"> Nama Lengkap </label> <input
-				type="text" th:field="*{datadiri.namaLengkap}" th:errorclass="fieldError"
-				class="form-control" />
+		<div class="form-group col-md-6">
+			<input id="inputID" type="text" class="form-control"/>
 		</div>
 		<div class="form-group col-md-6">
-			<p>
-				<label th:for="${skilldiri.datadiri}"> Umur </label> <input type="text"
-					th:field="*{datadiri.umur}" th:errorclass="fieldError" class="form-control"
-					id="spinner1" name="value" />
-			</p>
+			<label> Skill </label> <input id="inputSkill"
+				type="text" class="form-control" />
+				<input id="selectSkill" type="hidden"/>
 		</div>
-
-		<!-- <div>
-			<label th:for="${datadiri.tempatLahir}"> Tempat Lahir </label> <input type="text"
-				th:field="*{tempatLahir}" th:errorclass="fieldError" class="form-control"  />
-		</div>-->
-		<div class="form-group col-md-6">
-			<label th:for="${skilldiri.datadiri}"> Jenis Kelamin </label> <select
-				id="inputGender" th:field="*{datadiri.gender}" th:errorclass="fieldError"
-				class="form-control">
-				<option value="">Choose...</option>
-				<option value="L">Laki-laki</option>
-				<option value="P">Perempuan</option>
-			</select>
-		</div>
-		<div class="form-group col-md-6">
-			<label th:for="${skilldiri.datadiri}"> Agama </label> <select
-				id="inputAgama" th:field="*{datadiri.agama}" th:errorclass="fieldError"
-				class="form-control">
-				<option value="">Choose...</option>
-				<option value="Islam">Islam</option>
-				<option value="Kristen">Kristen</option>
-				<option value="Katolik">Katolik</option>
-				<option value="Hindu">Hindu</option>
-				<option value="Buddha">Buddha</option>
-				<option value="Konghuchu">Konghuchu</option>
-			</select>
-		</div>
-		<div class="form-group col-md-6">
-			<label th:for="${skilldiri.datadiri}"> Kewarganegaraan
-			</label> <input type="text" th:field="*{datadiri.kewarganegaraan}"
-				th:errorclass="fieldError" class="form-control" />
-		</div>
-		<div class="form-group col-md-6">
-			<label th:for="${skilldiri.datadiri}"> Status
-				Perkawinan </label> <select id="inputSP" th:field="*{datadiri.statusPerkawinan}"
-				th:errorclass="fieldError" class="form-control">
-				<option value="">Choose...</option>
-				<option value="Lajang">Lajang</option>
-				<option value="Menikah">Menikah</option>
-			</select>
-		</div>
-		<div class="form-group col-md-6">
-			<label th:for="${skilldiri.skilldiriPK}"> Skill</label> <select
-				id="inputSP" th:field="*{skilldiriPK.skillId}"
-				th:errorclass="fieldError" class="form-control">
-				<div th:each="s : ${getSkill}">
-					<option value="">Choose..</option>
-					<option th:value="${s.skillId}" th:text="${s.namaSkill}"></option>
-				</div>
-			</select>
-		</div>
-		<div>
-			<input type="submit" value="SIMPAN" />
-		</div>
-	</form>
 </body>
 </html>
