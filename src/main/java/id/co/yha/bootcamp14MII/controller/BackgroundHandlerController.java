@@ -76,7 +76,7 @@ public class BackgroundHandlerController {
 	}
 	
 	@GetMapping("/skillId")
-	public List<String> getAllSkillId(){
+	public List<String> getSkillId(){
 		StringBuilder builder;
 		List<String> hasil = new ArrayList<>();
 		List<Skill> listSkill = factory.createEntityManager().createQuery("from Skill where isActive=1")

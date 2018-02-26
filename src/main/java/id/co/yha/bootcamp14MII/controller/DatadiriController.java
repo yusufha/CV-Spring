@@ -140,7 +140,7 @@ public class DatadiriController {
 		sd.setSkilldiriPK(new SkilldiriPK());
 		sd.getSkilldiriPK().setId(id);
 		model.addAttribute("sd", sd);
-		model.addAttribute("getSkill", skillDAO.getAllSkill());
+		//model.addAttribute("getSkill", skillDAO.getAllSkill());
 		return "sd/add";
 	}
 	
