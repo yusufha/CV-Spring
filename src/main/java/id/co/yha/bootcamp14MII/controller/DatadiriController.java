@@ -58,7 +58,7 @@ public class DatadiriController {
 	@GetMapping("/detail/{id}")
 	public String detail(Model model, @PathVariable("id") int id) {
 		model.addAttribute("objekDatadiri", datadiriDAO.getDatadiri(id));
-		return "datadiri/detail";
+		return "datadiri/details";
 	}
 	
 	@GetMapping("/add")

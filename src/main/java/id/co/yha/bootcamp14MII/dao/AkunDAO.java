@@ -21,8 +21,6 @@ public class AkunDAO {
 	@Autowired
 	private EntityManagerFactory factory;
 	
-	
-	
 	public List<Akun> getAllAkun(){
 		return factory.createEntityManager()
 				.createQuery("from Akun where isActive = 1")
@@ -32,6 +30,12 @@ public class AkunDAO {
 	public Akun getAkun(int id) {
 		return (Akun) factory.createEntityManager()
 				.createQuery("from Akun where id =" +id )
+				.getSingleResult();
+	}
+	
+	public Akun getAkun2(String username) {
+		return (Akun) factory.createEntityManager()
+				.createQuery("from Akun where userName ='" +username+"'" )
 				.getSingleResult();
 	}
 	

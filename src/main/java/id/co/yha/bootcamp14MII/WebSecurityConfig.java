@@ -28,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/home").permitAll()
                 .anyRequest().authenticated()
                 .and()
-            .formLogin().defaultSuccessUrl("/datadiri/index", true)
+            .formLogin().defaultSuccessUrl("/default", true)
                 .loginPage("/login")
                 .permitAll()
                 .and()
