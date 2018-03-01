@@ -20,7 +20,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
-<form action="#" th:action="@{/datadiri/addPekerjaan}"
+<form action="#" th:action="@{/user/addPekerjaan}"
 		th:object="${pekerjaan}" method="post">
 		<div>
 		 <input type="hidden" th:field="*{id.id}" th:errorclass="fieldError" />

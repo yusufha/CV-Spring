@@ -39,24 +39,24 @@ public class SkillDiriController {
 		model.addAttribute("objekSD", skilldiriDAO.getSkilldiri(id));
 		return "sd/detail";
 	}
-	
-	@GetMapping("/add")
-	public String add(Model model) {
-		model.addAttribute("skilldiri", new Skilldiri());
-		model.addAttribute("getSkill", skillDAO.getAllSkill());
-		return "sd/add";
-	}
-	
-	@PostMapping("/add")
-	public String add(@Valid Skilldiri sd, BindingResult result) {
-		
-		if(!result.hasErrors() && skilldiriDAO.addSkilldiri(sd)) {
-			return "redirect:/sd/index";
-		}
-		else {
-			return "sd/add";
-		}
-	}
+//	
+//	@GetMapping("/add")
+//	public String add(Model model) {
+//		model.addAttribute("skilldiri", new Skilldiri());
+//		model.addAttribute("getSkill", skillDAO.getAllSkill());
+//		return "sd/add";
+//	}
+//	
+//	@PostMapping("/add")
+//	public String add(@Valid Skilldiri sd, BindingResult result) {
+//		
+//		if(!result.hasErrors() && skilldiriDAO.addSkilldiri(sd)) {
+//			return "redirect:/sd/index";
+//		}
+//		else {
+//			return "sd/add";
+//		}
+//	}
 	
 	@GetMapping("/edit/{skilldiriPK}")
 	public String editForm(Model model, @PathVariable("skilldiriPK") int id) {

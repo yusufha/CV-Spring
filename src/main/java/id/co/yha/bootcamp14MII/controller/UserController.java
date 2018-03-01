@@ -65,22 +65,22 @@ public class UserController {
 		return "user/index";
 	}
 	
-	@GetMapping("/add/{id}")
-	public String add(Model model) {
-		model.addAttribute("datadiri", new Datadiri());
-//		model.addAttribute("getSkill", skillDAO.getAllSkill());
-		return "datadiri/add";
-	}
-	
-	@PostMapping("/add")
-	public String add(@Valid Datadiri datadiri, BindingResult result) {
-		if(!result.hasErrors() && datadiriDAO.addDatadiri(datadiri)) {
-			return "redirect:/datadiri/index";
-		}
-		else {
-			return "datadiri/add";
-		}
-	}
+//	@GetMapping("/add/{id}")
+//	public String add(Model model, @PathVariable("id") int id) {
+//		model.addAttribute("datadiri", new Datadiri());
+////		model.addAttribute("getSkill", skillDAO.getAllSkill());
+//		return "datadiri/add";
+//	}
+//	
+//	@PostMapping("/add")
+//	public String add(@Valid Datadiri datadiri, BindingResult result) {
+//		if(!result.hasErrors() && datadiriDAO.addDatadiri(datadiri)) {
+//			return "redirect:/datadiri/index";
+//		}
+//		else {
+//			return "datadiri/add";
+//		}
+//	}
 	
 	@GetMapping("/edit/{id}")
 	public String editForm(Model model, @PathVariable("id") int id) {
@@ -91,7 +91,7 @@ public class UserController {
 	@PostMapping("/edit")
 	public String edit(@Valid Datadiri datadiri, BindingResult result) {
 		if(!result.hasErrors() && datadiriDAO.editDatadiri(datadiri)) {
-			return "redirect:/datadiri/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "datadiri/edit/";
@@ -112,7 +112,7 @@ public class UserController {
 	@PostMapping("/addPendidikan")
 	public String addPendidikan(@Valid Pendidikan pendidikan, BindingResult result) {
 		if(!result.hasErrors() && pendidikanDAO.addPendidikan(pendidikan)) {
-			return "redirect:/pendidikan/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "pendidikan/add";
@@ -128,7 +128,7 @@ public class UserController {
 	@PostMapping("/editPendidikan")
 	public String editPendidikan(@Valid Pendidikan pendidikan, BindingResult result) {
 		if(!result.hasErrors() && pendidikanDAO.editPendidikan(pendidikan)) {
-			return "redirect:/pendidikan/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "pendidikan/edit/";
@@ -151,7 +151,7 @@ public class UserController {
 	@PostMapping("/addSkill")
 	public String addSkill(@Valid Skilldiri skill, BindingResult result) {
 		if(!result.hasErrors() && skilldiriDAO.addSkilldiri(skill)) {
-			return "redirect:/datadiri/detail/{id}";
+			return "redirect:/user/index";
 		}
 		else {
 			return "sd/add";
@@ -188,7 +188,7 @@ public class UserController {
 	@PostMapping("/addPekerjaan")
 	public String addPekerjaan(@Valid Pekerjaan pekerjaan, BindingResult result) {
 		if(!result.hasErrors() && pekerjaanDAO.addPekerjaan(pekerjaan)) {
-			return "redirect:/datadiri/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "pekerjaan/add";
@@ -204,7 +204,7 @@ public class UserController {
 	@PostMapping("/editPekerjaan")
 	public String editPekerjaan(@Valid Pekerjaan pekerjaan, BindingResult result) {
 		if(!result.hasErrors() && pekerjaanDAO.editPekerjaan(pekerjaan)) {
-			return "redirect:/datadiri/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "pekerjaan/edit/";
@@ -227,7 +227,7 @@ public class UserController {
 //		System.out.println("2 " + organisasi.getNamaOrganisasi());
 //		organisasi.setId(datadiriDAO.getDatadiri(id));
 		if(!result.hasErrors() && organisasiDAO.addOrganisasi(organisasi)) {
-			return "redirect:/datadiri/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "organisasi/add";
@@ -243,7 +243,7 @@ public class UserController {
 	@PostMapping("/editOrganisasi")
 	public String editOrganisasi(@Valid Organisasi org, BindingResult result) {
 		if(!result.hasErrors() && organisasiDAO.editOrganisasi(org)) {
-			return "redirect:/datadiri/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "organisasi/edit/";
@@ -264,7 +264,7 @@ public class UserController {
 	@PostMapping("/addPenghargaan")
 	public String addPenghargaan(@Valid Penghargaan penghargaan, BindingResult result) {
 		if(!result.hasErrors() && penghargaanDAO.addPenghargaan(penghargaan)) {
-			return "redirect:/datadiri/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "penghargaan/add";
@@ -280,7 +280,7 @@ public class UserController {
 	@PostMapping("/editPenghargaan")
 	public String editPenghargaan(@Valid Penghargaan penghargaan, BindingResult result) {
 		if(!result.hasErrors() && penghargaanDAO.editPenghargaan(penghargaan)) {
-			return "redirect:/datadiri/index";
+			return "redirect:/user/index";
 		}
 		else {
 			return "penghargaan/edit/";
